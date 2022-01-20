@@ -16,7 +16,7 @@
 .left-part{
     width: 48%;
     align-items: flex-start;
-    align-content: flex-end;
+    align-content: flex-start;
 }
 
 .image{
@@ -25,9 +25,10 @@
 }
 
 .google{
+    display: flex;
     font-size: 25px;
     color: blue;
-    margin: 0vh 0vw 0vh -18vw;
+    margin: 0vh 0vw 0vh 0vw;
 }
 
 .h1-heading{
@@ -35,19 +36,22 @@
     font-size: 25px;
     font-weight: 500;
     color: black;
-    /* margin: 0vh 0vw 0vh -10vw; */
+    margin: 0vh 0vw 0vh 0vw;
     margin-bottom: 24px;
-    /* margin-left: 24px; */
+    /* margin-left: 5px; */
 }
 
 .first-line{
     display: flex;
     width: 100%;
-    justify-content: center;
+    /* justify-content: center; */
+    justify-content: space-between;
 }
 
-.email{
-
+.emailId{
+    padding-top: 24px;
+    width: 100%;
+    display: block;
 }
 
 .email-option{

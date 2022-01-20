@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import '../signup/Signup.css';
 import TextField from '@mui/material/TextField';
-import logo1 from '../assests/logo1.svg';
+import '../signup/Signup.css';
+import logo1 from '../../assests/logo1.svg';
+
 
 export class Signup extends Component {
     render() {
@@ -21,7 +22,7 @@ export class Signup extends Component {
                         <h2 className="h1-heading">Create your Google Account</h2>
                         <br />
                         <div className="first-line">
-                        <TextField id="outlined-basic" label="First Name" variant="outlined" />
+                        <TextField id="outlined-basic" label="First Name" variant="outlined" autoFocus/>
                         <TextField id="outlined-basic" label="Last Name" variant="outlined" />
                         </div>
 
@@ -30,9 +31,9 @@ export class Signup extends Component {
                         </div><br />
                         <div email-option>Use my current email address instead</div><br />
                         <div className="password">
-                        <TextField id="outlined-basic" label="Password" variant="outlined" />
-                        <TextField id="outlined-basic" label="Confirm" variant="outlined" helperText="Use 8 or more characters with a mix of letters, numbers & symbols" />
-
+                        <TextField id="outlined-basic" label="Password" variant="outlined" helperText="Use 8 or more characters with a mix of letters, numbers & symbols" />
+                        <TextField id="outlined-basic" label="Confirm" variant="outlined"  />
+                        
                         </div>
                         <div className="showpass">
                             <input classname="check" type="checkbox" />
@@ -46,7 +47,7 @@ export class Signup extends Component {
                         </div>
                     </div>
                     <div className="image">
-                        <img class="logo" src={logo1} alt="logo" />
+                        <img class="logo" src= { logo1 } alt="logo" />
                         <p className="logo-text">One account. All of Google working for you.</p>
                     </div>
                 </div>
