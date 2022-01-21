@@ -25,7 +25,7 @@ export class Signin extends Component {
                         <TextField id="outlined-basic" label="Email or phone" variant="outlined" fullWidth autoFocus />
                     </div>
                     <br></br>
-                    <div className="forgot">Forget email?</div>
+                    <div className="forget">Forget email?</div>
                     <div className="text-content">
                         <p className="text">Not your computer? Use Guest mode to sign in privately.</p>
                         <p className="learnmore">Learn more</p>

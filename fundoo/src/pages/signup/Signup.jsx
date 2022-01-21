@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 import '../signup/Signup.css';
 import logo1 from '../../assests/logo1.svg';
 
@@ -27,12 +28,12 @@ export class Signup extends Component {
                         </div>
 
                         <div className="emailId">
-                        <TextField id="outlined-basic" label="Username" variant="outlined" helperText="You can use letters,number & periods" />
-                        </div><br />
-                        <div email-option>Use my current email address instead</div><br />
+                        <TextField id="outlined-basic" label="Username" variant="outlined" fullWidth helperText="You can use letters,number & periods" />
+                        </div>
+                        <div className="email-option">Use my current email address instead</div><br />
                         <div className="password">
-                        <TextField id="outlined-basic" label="Password" variant="outlined" helperText="Use 8 or more characters with a mix of letters, numbers & symbols" />
-                        <TextField id="outlined-basic" label="Confirm" variant="outlined"  />
+                        <TextField id="outlined-basic" label="Password" variant="outlined" fullWidth helperText="Use 8 or more characters with a mix of letters, numbers & symbols" />
+                        <TextField id="outlined-basic" label="Confirm" variant="outlined" fullWidth />
                         
                         </div>
                         <div className="showpass">
@@ -42,7 +43,7 @@ export class Signup extends Component {
                         <div className="last-part">
                             <p className="signin">Sign in instead</p>
                             <p className="box">
-                                <button className="button">Next</button>
+                            <Button variant="contained">Next</Button>
                             </p>
                         </div>
                     </div>
