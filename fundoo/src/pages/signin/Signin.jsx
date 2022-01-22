@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import '../signin/Signin.css'
-
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
@@ -11,7 +10,7 @@ export class Signin extends Component {
                 <div className="login-container">
                     <div className="first-content">
                         <div className="Google">
-                            <p style={{ color: 'blue' }} >G</p>
+                            <p style={{ color: 'blue' }}>G</p>
                             <p style={{ color: 'red' }}>o</p>
                             <p style={{ color: 'yellow' }}>o</p>
                             <p style={{ color: 'blue' }}>g</p>
@@ -23,6 +22,7 @@ export class Signin extends Component {
                     </div>
                     <div className="email">
                         <TextField id="outlined-basic" label="Email or phone" variant="outlined" fullWidth autoFocus />
+                        <TextField id="outlined-basic" label="Password" variant="outlined" fullWidth />
                     </div>
                     <br></br>
                     <div className="forget">Forget email?</div>
@@ -32,8 +32,8 @@ export class Signin extends Component {
                     </div>
                     <div className="create">
                         <p className="c-text" >Create account</p>
-                        <div className="box">
-                        <Button variant="next">Next</Button>
+                        <div className="next">
+                        <Button variant="contained">Next</Button>
                         </div>
                     </div>
                 </div>
