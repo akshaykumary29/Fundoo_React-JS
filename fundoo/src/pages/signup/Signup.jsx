@@ -86,9 +86,9 @@ export class Signup extends Component {
                                     size="small"
                                     fullWidth
                                     autoFocus
-                                    error = {this.state.firstNameError}
-                                    helperText = {this.state.firstNameError ? "Firstname is required." : ""}
-                                    onChange = {(e) => this.changeHandle(e)}
+                                    error={this.state.firstNameError}
+                                    helperText={this.state.firstNameError ? "Firstname is required." : ""}
+                                    onChange={(e) => this.changeHandle(e)}
                                 />
                             </div>
                             <div>
@@ -99,33 +99,31 @@ export class Signup extends Component {
                                     variant="outlined"
                                     size="small"
                                     fullWidth
-                                    error = {this.state.lastNameError}
-                                    helperText = {this.state.lastNameError ? "Lastname is required." : ""}
+                                    error={this.state.lastNameError}
+                                    helperText={this.state.lastNameError ? "Lastname is required." : ""}
                                     onChange={(e) => this.changeHandle(e)}
                                 />
                             </div>
                         </div>
 
-
-                        {/* helperText="You can use letters,number & periods" */}
                         <div className="emailId">
-                            <TextField name="userName" id="outlined-basic" label="Username" variant="outlined" size="small" fullWidth  
-                            error = {this.state.userNameError}
-                            helperText = {this.state.userNameError ? "Username is required." : "You can use letters,number & periods"}
-                            onChange={(e) => this.changeHandle(e)}   
+                            <TextField name="userName" id="outlined-basic" label="Username" variant="outlined" size="small" fullWidth
+                                error={this.state.userNameError}
+                                helperText={this.state.userNameError ? "Username is required." : "You can use letters,number & periods"}
+                                onChange={(e) => this.changeHandle(e)}
                             />
                         </div>
                         <div className="email-option">Use my current email address instead</div><br />
                         <div className="password">
-                            <TextField name="passWord" id="outlined-basic" label="Password" variant="outlined" size="small" fullWidth  
-                            error = {this.state.passWordError}
-                            helperText = {this.state.passWordError ? "Password is required." : "Use 8 or more characters with a mix of letters, numbers & symbols"}
-                            onChange={(e) => this.changeHandle(e)}
+                            <TextField name="passWord" id="outlined-basic" label="Password" variant="outlined" size="small" fullWidth
+                                error={this.state.passWordError}
+                                helperText={this.state.passWordError ? "Password is required." : "Use 8 or more characters with a mix of letters, numbers & symbols"}
+                                onChange={(e) => this.changeHandle(e)}
                             />
-                            <TextField name="confirmPassword" id="outlined-basic" label="Confirm" variant="outlined" size="small" fullWidth 
-                            error = {this.state.confirmPasswordError}
-                            helperText = {this.state.confirmPasswordError ? "Confirmpassword is required." : ""}
-                            onChange={(e) => this.changeHandle(e)}
+                            <TextField name="confirmPassword" id="outlined-basic" label="Confirm" variant="outlined" size="small" fullWidth
+                                error={this.state.confirmPasswordError}
+                                helperText={this.state.confirmPasswordError ? "Confirmpassword is required." : ""}
+                                onChange={(e) => this.changeHandle(e)}
                             />
                         </div>
                         <div className="showpass">
