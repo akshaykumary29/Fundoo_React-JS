@@ -5,6 +5,45 @@ import Button from "@mui/material/Button";
 
 
 export class ResetPassword extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            password: '',
+            confirmPassword: '',
+            passwordError: false,
+            confirmPasswordError: false
+        };
+    }
+
+    changeHandle = (e) => {
+        console.log(e.target.name, e.target.value);
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+    }
+
+    validation = () => {
+        let isError = false;
+        const error = this.state;
+        error.passwordError = this.state.password === '' ? true : false;
+        error.confirmPasswordError = this.state.confirmPassword === '' ? true : false;
+
+        this.setState({
+            ...error
+        })
+
+        return isError = error.passwordError || error.confirmPasswordError;
+    }
+
+    next = () => {
+        let isValidated = this.validation();
+        if (isValidated) {
+            console.log("Success Validated.");
+        }
+    }
+
     render() {
         return (
             <div className="signup-container">
@@ -24,28 +63,36 @@ export class ResetPassword extends Component {
                         </div>
                         <div className="field-row">
                             <TextField
+                                name="password"
                                 id="outlined-basic"
                                 label="Password"
                                 variant="outlined"
                                 size="small"
                                 fullWidth
                                 autoFocus
+                                error={this.state.passwordError}
+                                helperText={this.state.passwordError ? "Password is required." : ""}
+                                onChange={(e) => this.changeHandle(e)}
                             />
                         </div>
                         <div className="field-row">
                             <TextField
+                                name="confirmPassword"
                                 id="outlined-basic"
                                 label="Confirm Password"
                                 variant="outlined"
                                 size="small"
                                 fullWidth
+                                error={this.state.confirmPasswordError}
+                                helperText={this.state.confirmPasswordError ? "Confirm Password is required." : ""}
+                                onChange={(e) => this.changeHandle(e)}
                             />
                         </div>
 
                     </div>
                     <div className="redirect">
                         <div className="skip">Skip</div>
-                        <Button variant="contained">Save Password</Button>
+                        <Button variant="contained" onClick={this.next}>Save Password</Button>
                     </div>
                 </div>
             </div>
