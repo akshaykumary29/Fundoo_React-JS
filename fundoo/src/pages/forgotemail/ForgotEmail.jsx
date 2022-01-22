@@ -4,6 +4,42 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
 export class ForgotEmail extends Component {
+
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            userEmail: '',
+            userEmailError: false
+        }
+    }
+
+    changeHandle = (e) => {
+        console.log(e.target.value);
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+    }
+
+    validation = () => {
+        let isError = false;
+        const error = this.state;
+        error.userEmailError = this.state.userEmail === '' ? true : false;
+
+        this.setState({
+            ...error
+        })
+
+        return isError = error.userEmailError;
+    }
+
+    next = () => {
+        let isValidated = this.validation();
+        if (isValidated) {
+            console.log("Success Validated")
+        }
+    }
+
     render() {
         return (
             <div className="forgot-page">
@@ -21,10 +57,14 @@ export class ForgotEmail extends Component {
                         <p className="phoneNumber">Enter your phone phone or recovery email</p>
                     </div>
                     <div className="enter-email">
-                        <TextField id="outlined-basic" label="Phone number or email" variant="outlined" fullWidth autoFocus />
+                        <TextField name="userEmail" id="outlined-basic" label="Phone number or email" variant="outlined" fullWidth autoFocus
+                            error={this.state.userEmailError}
+                            helperText={this.state.userEmailError ? "Valid Email or Number is required." : ""}
+                            onChange={(e) => this.changeHandle(e)}
+                        />
                     </div>
                     <div className="next-btn">
-                        <Button variant="contained">Next</Button>
+                        <Button variant="contained" onClick={this.next}>Next</Button>
                     </div>
                 </div>
             </div>

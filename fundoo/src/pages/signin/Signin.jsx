@@ -18,7 +18,7 @@ export class Signin extends Component {
 
     changeHandle = (e) => {
         this.setState({
-            [e.this.name]: e.this.value
+            [e.target.name]: e.target.value
         })
     }
 
