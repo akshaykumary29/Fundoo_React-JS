@@ -10,18 +10,20 @@ export class Signin extends Component {
                 <div className="login-container">
                     <div className="first-content">
                         <div className="Google">
-                            <p style={{ color: 'blue' }}>G</p>
+                            <p style={{ color: 'blue' }}>F</p>
+                            <p style={{ color: 'red' }}>u</p>
+                            <p style={{ color: 'yellow' }}>n</p>
+                            <p style={{ color: 'blue' }}>d</p>
+                            <p style={{ color: 'green' }}>o</p>
                             <p style={{ color: 'red' }}>o</p>
-                            <p style={{ color: 'yellow' }}>o</p>
-                            <p style={{ color: 'blue' }}>g</p>
-                            <p style={{ color: 'green' }}>l</p>
-                            <p style={{ color: 'red' }}>e</p>
                         </div>
                         <p className="sign-in">Sign in</p>
-                        <p className="account">Use your Google Account</p>
+                        <p className="account">Use your Fundoo Account</p>
                     </div>
                     <div className="email">
                         <TextField id="outlined-basic" label="Email or phone" variant="outlined" fullWidth autoFocus />
+                    </div>
+                    <div className="pass">
                         <TextField id="outlined-basic" label="Password" variant="outlined" fullWidth />
                     </div>
                     <br></br>
@@ -33,7 +35,7 @@ export class Signin extends Component {
                     <div className="create">
                         <p className="c-text" >Create account</p>
                         <div className="next">
-                        <Button variant="contained">Next</Button>
+                            <Button variant="contained">Next</Button>
                         </div>
                     </div>
                 </div>

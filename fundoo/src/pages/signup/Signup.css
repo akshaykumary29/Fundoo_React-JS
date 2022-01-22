@@ -2,6 +2,7 @@
     margin: auto;
     padding: 50px;
     width: 50%;
+    border-radius: 8px;
 }
 
 .page{
@@ -28,7 +29,7 @@
     display: flex;
     font-size: 25px;
     color: blue;
-    margin: 0vh 0vw 0vh 24vw;
+    /* margin: 0vh 0vw 0vh 24vw; */
     justify-content: left;
     /* text-align: left; */
 }
@@ -39,15 +40,22 @@
     font-weight: 500;
     color: black;
     margin: 0vh 0vw 0vh 0vw;
-    margin-bottom: 24px;
+    /* margin-bottom: 24px; */
+    display: flex;
     /* margin-left: 5px; */
 }
 
-.first-line{
+.first-line1{
     display: flex;
     width: 100%;
     /* justify-content: center; */
+    /* justify-content: space-between; */
+}
+
+.field-row {
     justify-content: space-between;
+    margin: 20px 0;
+    display: flex;
 }
 
 .emailId{
@@ -64,6 +72,7 @@
     padding-bottom: 24px;
     font-weight: 600;
     margin-left: -60px;
+    cursor: pointer;
 }
 
 .password{
@@ -91,20 +100,19 @@
 
 .last-part{
     display: flex;
-    /* justify-content: center; */
+    justify-content: space-between;
 }
 
 .signin{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 15px;
-    color: blue;
-    /* margin: 1.5vh 0vw 0vh vw; */
+    color: #1A73E8;
+    margin: 1.5vh 0vw 0vh vw;
     text-align: left;
+    cursor: pointer;
 }
 
 .box{
-    /* width: 10px;
-    height: 2px; */
     text-align: right;
 }
 
