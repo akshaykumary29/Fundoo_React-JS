@@ -8,10 +8,10 @@ import ResetPassword from './pages/resetpassword/ResetPassword';
 function App() {
   return (
     <div className="App">
-      {/* <Signup /> */}
+      <Signup />
       {/* <Signin /> */}
       {/* <ForgotEmail /> */}
-      <ResetPassword />
+      {/* <ResetPassword /> */}
     </div>
   );
 }
