@@ -51,24 +51,26 @@ export class Signup extends Component {
     }
 
     next = () => {
-        let data = {
-            "firstName": "Akshay",
-            "lastName": "Yamgar",
-            "email": "akki@gmail.com",
-            "passord": "akki",
-            "service": "advance"
-        };
-
-        service.registration(data)
-        .then((res) => {
-            console.log(res);
-        })
-        .catch((err) => {
-            console.log(err);
-        })
-
         let isValidated = this.validation();
         if (isValidated) {
+
+            let data = {
+                "firstName": "Akshay",
+                "lastName": "Yamgar",
+                "email": "akki@gmail.com",
+                "password": "akki",
+                "confirmpassword":"akki",
+                "service": "advance"
+            };
+    
+            service.signup(data)
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+
             console.log("Success Validated");
         }
     }
@@ -96,7 +98,7 @@ export class Signup extends Component {
                         </div> */}
 
                         <div className="field-row">
-                            <div margin = "5px">
+                            <div>
                                 <TextField
                                     name="firstName"
                                     id="outlined-basic"
@@ -110,7 +112,7 @@ export class Signup extends Component {
                                     onChange={(e) => this.changeHandle(e)}
                                 />
                             </div>
-                            <div margin="5px">
+                            <div>
                                 <TextField
                                     name="lastName"
                                     id="outlined-basic"
@@ -136,7 +138,7 @@ export class Signup extends Component {
                         <div className="password">
                             <TextField name="passWord" id="outlined-basic" label="Password" variant="outlined" size="small" fullWidth
                                 error={this.state.passWordError}
-                                helperText={this.state.passWordError ? "Password is required." : "Use 8 or more characters with a mix of letters, numbers & symbols"}
+                                helperText={this.state.passWordError ? "Password is required." : " "}
                                 onChange={(e) => this.changeHandle(e)}
                             />
                             <TextField name="confirmPassword" id="outlined-basic" label="Confirm" variant="outlined" size="small" fullWidth
@@ -145,6 +147,7 @@ export class Signup extends Component {
                                 onChange={(e) => this.changeHandle(e)}
                             />
                         </div>
+                        <span className="helper">Use 8 or more characters with a mix of letters, numbers & symbols</span>
                         <div className="showpass">
                             <input className="check" type="checkbox" />
                             <p className="showbox">Show Password</p>

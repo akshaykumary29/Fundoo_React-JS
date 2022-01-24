@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import '../signin/Signin.css'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import UserService from "../../services/UserService";
 
 export class Signin extends Component {
 
@@ -36,6 +37,19 @@ export class Signin extends Component {
     }
 
     next = () => {
+
+        let data = {
+            "email": "akki@gmail.com",
+            "password": "akki"
+        }
+        UserService.Signin(data)
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+
         let isValidated = this.validation();
         if (isValidated) {
             console.log("Success Validated");
@@ -59,17 +73,17 @@ export class Signin extends Component {
                         <p className="account">Use your Fundoo Account</p>
                     </div>
                     <div className="email">
-                        <TextField name="emailVal" id="outlined-basic" label="Email or phone" variant="outlined" fullWidth autoFocus 
-                        error={this.state.emailValError}
-                        helperText={this.state.emailValError ? "Email or Phone is required." : ""}
-                        onChange={(e) => this.changeHandle(e)}
+                        <TextField name="emailVal" id="outlined-basic" label="Email or phone" variant="outlined" fullWidth autoFocus
+                            error={this.state.emailValError}
+                            helperText={this.state.emailValError ? "Email or Phone is required." : ""}
+                            onChange={(e) => this.changeHandle(e)}
                         />
                     </div>
                     <div className="pass">
-                        <TextField name="passwordVal" id="outlined-basic" label="Password" variant="outlined" fullWidth 
-                        error={this.state.passwordValError}
-                        helperText={this.state.passwordValError ? "Password is required." : ""}
-                        onChange={(e) => this.changeHandle(e)}
+                        <TextField name="passwordVal" id="outlined-basic" label="Password" variant="outlined" fullWidth
+                            error={this.state.passwordValError}
+                            helperText={this.state.passwordValError ? "Password is required." : ""}
+                            onChange={(e) => this.changeHandle(e)}
                         />
                     </div>
                     <br></br>

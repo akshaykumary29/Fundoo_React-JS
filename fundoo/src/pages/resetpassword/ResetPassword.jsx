@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import '../resetpassword/ResetPassword.scss'
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import axios from "axios"
+// import axios from "axios"
+import UserService from "../../services/UserService";
 
 
 export class ResetPassword extends Component {
@@ -39,21 +40,22 @@ export class ResetPassword extends Component {
     }
 
     next = () => {
+        let data = {
+            "password": "akki"
+        }
+
+        UserService.resetpassword(data)
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+
         let isValidated = this.validation();
         if (isValidated) {
             console.log("Success Validated.");
         }
-        let data = { 
-            
-          }
-
-        // axios.post("https://jsonplaceholder.typicode.com/posts")
-        // .then((res) => {
-        //     console.log(res);
-        // })
-        // .catch(() => {
-
-        // })
     }
 
     render() {
@@ -83,7 +85,7 @@ export class ResetPassword extends Component {
                                 fullWidth
                                 autoFocus
                                 error={this.state.passwordError}
-                                helperText={this.state.passwordError ? "Password is required." : ""}
+                                helperText={this.state.passwordError ? "Password is required." : " "}
                                 onChange={(e) => this.changeHandle(e)}
                             />
                         </div>
@@ -96,7 +98,7 @@ export class ResetPassword extends Component {
                                 size="small"
                                 fullWidth
                                 error={this.state.confirmPasswordError}
-                                helperText={this.state.confirmPasswordError ? "Confirm Password is required." : ""}
+                                helperText={this.state.confirmPasswordError ? "Confirm Password is required." : " "}
                                 onChange={(e) => this.changeHandle(e)}
                             />
                         </div>

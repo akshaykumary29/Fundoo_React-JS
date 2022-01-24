@@ -18,5 +18,3 @@ function App() {
 
 export default App;
 
-
-// browser <===  index.html  <===  index.js  <===  App.js <===  Component

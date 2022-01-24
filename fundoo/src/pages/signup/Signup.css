@@ -53,6 +53,7 @@
 }
 
 .field-row {
+    width: 97%;
     justify-content: space-between;
     /* margin: 20px 0; */
     display: flex;
@@ -79,7 +80,15 @@
     display: flex;
     /* justify-content: center; */
     justify-content: space-between;
+}
 
+.helper{
+    color: rgba(0, 0, 0, 0.6);
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
+    display: flex;
+    font-size: 0.75rem;
+    justify-content: center;
+    font-weight: 400;
 }
 
 .showpass{
@@ -109,6 +118,7 @@
     color: #1A73E8;
     margin: 1.5vh 0vw 0vh vw;
     text-align: left;
+    padding-top: 10px;
     cursor: pointer;
 }
 

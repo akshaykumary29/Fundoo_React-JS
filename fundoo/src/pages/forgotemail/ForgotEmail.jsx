@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import '../forgotemail/ForgotEmail.scss'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import UserService from "../../services/UserService";
 
 export class ForgotEmail extends Component {
 
@@ -34,6 +35,18 @@ export class ForgotEmail extends Component {
     }
 
     next = () => {
+        let data = {
+            "email":"akki@gmail.com"
+        }
+
+        UserService.forgotemail(data)
+        .then((res) => {
+            console.log(res);
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+
         let isValidated = this.validation();
         if (isValidated) {
             console.log("Success Validated")
@@ -59,7 +72,7 @@ export class ForgotEmail extends Component {
                     <div className="enter-email">
                         <TextField name="userEmail" id="outlined-basic" label="Phone number or email" variant="outlined" fullWidth autoFocus
                             error={this.state.userEmailError}
-                            helperText={this.state.userEmailError ? "Valid Email or Number is required." : ""}
+                            helperText={this.state.userEmailError ? "Valid Email or Number is required." : " "}
                             onChange={(e) => this.changeHandle(e)}
                         />
                     </div>
