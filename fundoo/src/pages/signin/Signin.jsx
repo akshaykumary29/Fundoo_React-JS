@@ -75,14 +75,14 @@ export class Signin extends Component {
                     <div className="email">
                         <TextField name="emailVal" id="outlined-basic" label="Email or phone" variant="outlined" fullWidth autoFocus
                             error={this.state.emailValError}
-                            helperText={this.state.emailValError ? "Email or Phone is required." : ""}
+                            helperText={this.state.emailValError ? "Email or Phone is required." : " "}
                             onChange={(e) => this.changeHandle(e)}
                         />
                     </div>
                     <div className="pass">
                         <TextField name="passwordVal" id="outlined-basic" label="Password" variant="outlined" fullWidth
                             error={this.state.passwordValError}
-                            helperText={this.state.passwordValError ? "Password is required." : ""}
+                            helperText={this.state.passwordValError ? "Password is required." : " "}
                             onChange={(e) => this.changeHandle(e)}
                         />
                     </div>
