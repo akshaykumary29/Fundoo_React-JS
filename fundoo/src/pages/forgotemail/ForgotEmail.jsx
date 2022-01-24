@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import '../forgotemail/ForgotEmail.css'
+import '../forgotemail/ForgotEmail.scss'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 

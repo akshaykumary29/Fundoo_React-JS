@@ -3,7 +3,10 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import '../signup/Signup.css';
 import logo1 from '../../assests/logo1.svg';
+// import axios from "axios";
+import UserService from "../../services/UserService";
 
+const service = new UserService();
 
 export class Signup extends Component {
 
@@ -48,6 +51,22 @@ export class Signup extends Component {
     }
 
     next = () => {
+        let data = {
+            "firstName": "Akshay",
+            "lastName": "Yamgar",
+            "email": "akki@gmail.com",
+            "passord": "akki",
+            "service": "advance"
+        };
+
+        service.registration(data)
+        .then((res) => {
+            console.log(res);
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+
         let isValidated = this.validation();
         if (isValidated) {
             console.log("Success Validated");
@@ -77,7 +96,7 @@ export class Signup extends Component {
                         </div> */}
 
                         <div className="field-row">
-                            <div>
+                            <div margin = "5px">
                                 <TextField
                                     name="firstName"
                                     id="outlined-basic"
@@ -87,11 +106,11 @@ export class Signup extends Component {
                                     fullWidth
                                     autoFocus
                                     error={this.state.firstNameError}
-                                    helperText={this.state.firstNameError ? "Firstname is required." : ""}
+                                    helperText={this.state.firstNameError ? "Firstname is required." : " "}
                                     onChange={(e) => this.changeHandle(e)}
                                 />
                             </div>
-                            <div>
+                            <div margin="5px">
                                 <TextField
                                     name="lastName"
                                     id="outlined-basic"
@@ -100,7 +119,7 @@ export class Signup extends Component {
                                     size="small"
                                     fullWidth
                                     error={this.state.lastNameError}
-                                    helperText={this.state.lastNameError ? "Lastname is required." : ""}
+                                    helperText={this.state.lastNameError ? "Lastname is required." : " "}
                                     onChange={(e) => this.changeHandle(e)}
                                 />
                             </div>
@@ -122,7 +141,7 @@ export class Signup extends Component {
                             />
                             <TextField name="confirmPassword" id="outlined-basic" label="Confirm" variant="outlined" size="small" fullWidth
                                 error={this.state.confirmPasswordError}
-                                helperText={this.state.confirmPasswordError ? "Confirmpassword is required." : ""}
+                                helperText={this.state.confirmPasswordError ? "Confirmpassword is required." : " "}
                                 onChange={(e) => this.changeHandle(e)}
                             />
                         </div>
@@ -139,7 +158,7 @@ export class Signup extends Component {
                     </div>
                     <div className="image">
                         <img className="logo" src={logo1} alt="logo" />
-                        <p className="logo-text">One account. All of Google working for you.</p>
+                        <p className="logo-text">One account. All of Fundoo working for you.</p>
                     </div>
                 </div>
             </div>

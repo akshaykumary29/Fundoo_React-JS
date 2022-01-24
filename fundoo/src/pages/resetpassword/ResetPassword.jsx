@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import '../resetpassword/ResetPassword.scss'
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import axios from "axios"
 
 
 export class ResetPassword extends Component {
@@ -42,6 +43,17 @@ export class ResetPassword extends Component {
         if (isValidated) {
             console.log("Success Validated.");
         }
+        let data = { 
+            
+          }
+
+        // axios.post("https://jsonplaceholder.typicode.com/posts")
+        // .then((res) => {
+        //     console.log(res);
+        // })
+        // .catch(() => {
+
+        // })
     }
 
     render() {
@@ -75,7 +87,7 @@ export class ResetPassword extends Component {
                                 onChange={(e) => this.changeHandle(e)}
                             />
                         </div>
-                        <div className="field-row">
+                        <div className="field-row1">
                             <TextField
                                 name="confirmPassword"
                                 id="outlined-basic"
