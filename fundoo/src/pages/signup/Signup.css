@@ -74,6 +74,7 @@
     font-weight: 600;
     margin-left: -60px;
     cursor: pointer;
+    display: table-cell;
 }
 
 .password{

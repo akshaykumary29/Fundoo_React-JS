@@ -3,6 +3,10 @@ import '../signin/Signin.css'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import UserService from "../../services/UserService";
+import { Link } from "react-router-dom";
+
+const service = new UserService();
+
 
 export class Signin extends Component {
 
@@ -42,7 +46,7 @@ export class Signin extends Component {
             "email": "akki@gmail.com",
             "password": "akki"
         }
-        UserService.Signin(data)
+        service.signin(data)
             .then((res) => {
                 console.log(res);
             })
@@ -86,14 +90,13 @@ export class Signin extends Component {
                             onChange={(e) => this.changeHandle(e)}
                         />
                     </div>
-                    <br></br>
-                    <div className="forget">Forget email?</div>
+                    <Link to="/forgotemail"><div className="forget">Forget email?</div></Link>
                     <div className="text-content">
                         <p className="text">Not your computer? Use Guest mode to sign in privately.</p>
                         <p className="learnmore">Learn more</p>
                     </div>
                     <div className="create">
-                        <p className="c-text" >Create account</p>
+                        <Link to="/"> <p className="c-text" >Create account</p></Link>
                         <div className="next">
                             <Button variant="contained" onClick={this.next}>Next</Button>
                         </div>

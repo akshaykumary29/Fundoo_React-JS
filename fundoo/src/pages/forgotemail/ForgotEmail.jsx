@@ -4,6 +4,8 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import UserService from "../../services/UserService";
 
+const service = new UserService();
+
 export class ForgotEmail extends Component {
 
     constructor(props) {
@@ -36,16 +38,16 @@ export class ForgotEmail extends Component {
 
     next = () => {
         let data = {
-            "email":"akki@gmail.com"
+            "email": "akki@gmail.com"
         }
 
-        UserService.forgotemail(data)
-        .then((res) => {
-            console.log(res);
-        })
-        .catch((err) => {
-            console.log(err);
-        })
+        service.forgotemail(data)
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
 
         let isValidated = this.validation();
         if (isValidated) {

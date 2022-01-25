@@ -4,6 +4,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 // import axios from "axios"
 import UserService from "../../services/UserService";
+const service = new UserService();
 
 
 export class ResetPassword extends Component {
@@ -44,7 +45,7 @@ export class ResetPassword extends Component {
             "password": "akki"
         }
 
-        UserService.resetpassword(data)
+        service.resetpassword(data)
             .then((res) => {
                 console.log(res);
             })

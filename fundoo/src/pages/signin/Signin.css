@@ -32,12 +32,14 @@
 .sign-in{
     font-size: 25px;
     margin-top: auto;
+    text-align: center;
 }
 
 .account{
     /* background-color: black; */
     font-size: 20px;
     margin: -1vh 0vw 3vh 0vw;
+    text-align: center;
 }
 
 .email{
@@ -45,12 +47,14 @@
     padding: 0px ;
     display: flex;
     justify-content: space-between;
+    margin: 1px 1px 0 1px;
 }
 
 .pass{
     display: flex;
     justify-content: space-between;
     padding-top: 10px;
+    margin: 1px 1px 0 1px;
 }
 
 .forget{

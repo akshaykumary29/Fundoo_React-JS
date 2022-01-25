@@ -5,6 +5,7 @@ import '../signup/Signup.css';
 import logo1 from '../../assests/logo1.svg';
 // import axios from "axios";
 import UserService from "../../services/UserService";
+import { Link } from "react-router-dom";
 
 const service = new UserService();
 
@@ -51,19 +52,14 @@ export class Signup extends Component {
     }
 
     next = () => {
-        let isValidated = this.validation();
-        if (isValidated) {
+        let data = {
+            "firstName": "Suraj",
+            "lastName": "Yam",
+            "email": "suraj@gmail.com",
+            "password": "Suraj"
+        };
 
-            let data = {
-                "firstName": "Akshay",
-                "lastName": "Yamgar",
-                "email": "akki@gmail.com",
-                "password": "akki",
-                "confirmpassword":"akki",
-                "service": "advance"
-            };
-    
-            service.signup(data)
+        service.signup(data)
             .then((res) => {
                 console.log(res);
             })
@@ -71,6 +67,8 @@ export class Signup extends Component {
                 console.log(err);
             })
 
+        let isValidated = this.validation();
+        if (isValidated) {
             console.log("Success Validated");
         }
     }
@@ -153,7 +151,7 @@ export class Signup extends Component {
                             <p className="showbox">Show Password</p>
                         </div>
                         <div className="last-part">
-                            <p className="signin">Sign in instead</p>
+                            <Link to="/signin"> <p className="signin">Sign in instead</p> </Link>
                             <p className="box">
                                 <Button variant="contained" onClick={this.next}>Next</Button>
                             </p>
