@@ -10,6 +10,7 @@ import { Signup } from './pages/signup/Signup';
 import { Signin } from './pages/signin/Signin';
 import { ForgotEmail } from './pages/forgotemail/ForgotEmail';
 import { ResetPassword } from './pages/resetpassword/ResetPassword';
+import Dashboard from './pages/dashboard/Dashboard'
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
           <Route path='/signin' component={Signin}></Route>
           <Route path='/forgotemail' component={ForgotEmail}></Route>
           <Route path='/resetpassword' component={ResetPassword}></Route>
+          <Route path='/dashboard' component={Dashboard}></Route>
           <Route path='*' component={() => "Oops! Page Not Found"}></Route>
         </Switch>
       </Router>    
