@@ -2,15 +2,15 @@ import { IconButton } from "@mui/material";
 import React, { useState } from "react";
 import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined';
 import BrushOutlinedIcon from '@mui/icons-material/BrushOutlined';
-import PhotoOutlinedIcon from '@mui/icons-material/PhotoOutlined';
-import TextareaAutosize from '@mui/material/TextareaAutosize';
+import PhotoOutlinedIcon from '@mui/icons-material/PhotoOutlined'; 
+import InputBase from '@mui/material/InputBase';
 import Button from '@mui/material/Button';
 import { Icons } from "../icons/Icons";
 
 import '../takeNote/TakeNote.scss'
 
 function TakeNote() {
-    const [isExpanded, setExpanded] = useState(false);
+    const [isExpanded, setExpanded] = useState(true);
 
     // const [note, setNote] = useState({
     //     title: "",
@@ -25,20 +25,15 @@ function TakeNote() {
     //         };
     //     })
     // }
-    function handleExpanded() {
-        setExpanded(true);
-    }
-    
+    // function handleExpanded() {
+    //     setExpanded(true);
+    // }
+
     return (
-        <div>
+        <div className="main">
             {isExpanded ?
-                <div className='title-container' onClick={() => handleExpanded(true)}>
-                    <div className='takenote' fullwidth>Take a note...</div>
-                    {/* <div className='bar-icons'>
-                        <div><CheckBoxOutlinedIcon htmlColor="grey" /></div>
-                        <div><BrushOutlinedIcon htmlColor="grey" /></div>
-                        <div><InsertPhotoOutlinedIcon htmlColor="grey" /></div>
-                    </div> */}
+                <div className='title-container' onClick={() => setExpanded(false)}>
+                    <div className='takenote'>Take a note...</div>
                     <div className="titleIcon">
                         <IconButton> <CheckBoxOutlinedIcon /> </IconButton>
                         <IconButton> <BrushOutlinedIcon /> </IconButton>
@@ -47,20 +42,20 @@ function TakeNote() {
                 </div>
                 :
                 <div className='title'>
-                    <div> <TextareaAutosize className='text-area' rows="1" cols="50" name="description" placeholder="Title">
-                        
-                    </TextareaAutosize></div>
-                    <div> <textarea className='text-area' rows="5" cols="50" name="description" placeholder="Take a note...">
-                        
-                    </textarea></div>
-                    <div><Icons /> <Button variant="text" onClick={() => handleExpanded(false)}>Close</Button></div>
-                    
-                    {/* <button onClick={() => handleExpanded(true)}>close</button> */}
+                    <div> <InputBase className="titleName" placeholder="Title" fullWidth multiline></InputBase>
+
+                    </div>
+                    <div> <InputBase className="noteInput" placeholder="Take a note..." fullWidth multiline></InputBase></div>
+                    <div ><Icons />
+                        <span className="btn"><Button variant="text" onClick={() => setExpanded(true)}>Close</Button></span>
+                    </div>
+
+
                 </div>
             }
         </div>
 
-        
+
 
     );
 }

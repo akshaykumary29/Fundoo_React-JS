@@ -34,6 +34,7 @@ import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined
 
 import '../dashboard/Dashboard.scss'
 import TakeNote from '../../components/takeNote/TakeNote';
+import { DisplayNote } from '../../components/displayNote/DisplayNote';
 import { typography } from '@mui/system';
 
 const drawerWidth = 240;
@@ -188,18 +189,20 @@ export default function MiniDrawer() {
                             <ListItemIcon>
 
                                 {text.icons}
-                                
+
                             </ListItemIcon>
                             <ListItemText primary={text.text} />
                         </ListItem>
                     ))}
                 </List>
             </Drawer>
-            <Box component="main" sx={{ flexGrow: 1 }}>
+            <Box component="main" sx={{ flexGrow: 1 , p: 2}}>
                 <DrawerHeader />
                 <typography>
                     <TakeNote />
+                    <DisplayNote />
                 </typography>
+                {/* <DisplayNote /> */}
             </Box>
         </Box >
     );
