@@ -33,6 +33,8 @@ import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined';
 import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
 
 import '../dashboard/Dashboard.scss'
+import TakeNote from '../../components/takeNote/TakeNote';
+import { typography } from '@mui/system';
 
 const drawerWidth = 240;
 
@@ -107,18 +109,23 @@ export default function MiniDrawer() {
 
     let list = [
         {
+            text:"Notes",
             icons: <LightbulbOutlinedIcon />,
         },
         {
+            text:"Reminders",
             icons: <NotificationsOutlinedIcon />,
         },
         {
+            text:"Edit labels",
             icons: <CreateOutlinedIcon />,
         },
         {
+            text:"Archive",
             icons: <ArchiveOutlinedIcon />,
         },
         {
+            text: "Bin",
             icons: <DeleteForeverOutlinedIcon />
         }
     ]
@@ -140,10 +147,10 @@ export default function MiniDrawer() {
                         aria-label="open drawer"
                         onClick={handleDrawerOpen}
                         edge="start"
-                        // sx={{
-                        //     marginRight: '36px',
-                        //     ...(open && { display: 'none' }),
-                        // }}
+                    // sx={{
+                    //     marginRight: '36px',
+                    //     ...(open && { display: 'none' }),
+                    // }}
                     >
                         <MenuIcon />
                     </IconButton>
@@ -152,8 +159,8 @@ export default function MiniDrawer() {
                         Keep
                     </Typography>
                     <div className='header'>
-                        <div className='search-bar'><SearchIcon />
-                            <input className='search' type="text" placeholder='search' />
+                        <div className='search-bar'><IconButton> <SearchIcon /> </IconButton>
+                            <input className='search' type="text" placeholder='Search' />
                         </div>
                         <div className='hearder-bar'>
                             <ul className="header-icon">
@@ -171,24 +178,28 @@ export default function MiniDrawer() {
             <Drawer variant="permanent" open={open}>
                 <DrawerHeader>
                     <IconButton >
-                        {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+                        {/* {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />} */}
                     </IconButton>
                 </DrawerHeader>
                 {/* <Divider /> */}
                 <List>
-                    {['Notes', 'Reminders', 'Edit labels', 'Archive', 'Bin'].map((text, index) => (
-                        <ListItem button key={text}>
+                    {list.map((text, index) => (
+                        <ListItem button key={text.text}>
                             <ListItemIcon>
-                                {/* index === "<LightbulbOutlinedIcon /> : <NotificationsOutlinedIcon /> : <CreateOutlinedIcon /> : <ArchiveOutlinedIcon /> : <DeleteForeverOutlinedIcon />" */}
-                                {index.icons}
+
+                                {text.icons}
+                                
                             </ListItemIcon>
-                            <ListItemText primary={text} />
+                            <ListItemText primary={text.text} />
                         </ListItem>
                     ))}
                 </List>
             </Drawer>
             <Box component="main" sx={{ flexGrow: 1 }}>
                 <DrawerHeader />
+                <typography>
+                    <TakeNote />
+                </typography>
             </Box>
         </Box >
     );
