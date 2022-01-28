@@ -48,9 +48,25 @@
     font-weight: bold;
     padding: 10px 0px;
   }
+  .icon-btn{
+    display: flex;
+    align-items: center;
+    line-height: 26px;
+    margin: 4px 0;
+    // justify-content: space-around;
+  }
+
+  .icon{
+    width: 80%;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
   .btn{
     display: flex;
-    flex-direction: row;
+    // flex-direction: row;
     justify-content: flex-end;
+    // color: rgba(0,0,0,0.87);
+    padding-right: 10px;
   }
 }

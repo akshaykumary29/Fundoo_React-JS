@@ -2,32 +2,32 @@ import { IconButton } from "@mui/material";
 import React, { useState } from "react";
 import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined';
 import BrushOutlinedIcon from '@mui/icons-material/BrushOutlined';
-import PhotoOutlinedIcon from '@mui/icons-material/PhotoOutlined'; 
+import PhotoOutlinedIcon from '@mui/icons-material/PhotoOutlined';
 import InputBase from '@mui/material/InputBase';
 import Button from '@mui/material/Button';
 import { Icons } from "../icons/Icons";
 
 import '../takeNote/TakeNote.scss'
 
-function TakeNote() {
+function TakeNote(props) {
     const [isExpanded, setExpanded] = useState(true);
 
-    // const [note, setNote] = useState({
-    //     title: "",
-    //     content: "",
-    // });
+    const [note, setNote] = useState({
+        title: "",
+        content: "",
+    });
 
-    // function handleChange(e) {
-    //     const { name, value } = e.target;
-    //     setNote(() => {
-    //         return {
-    //             [name]: value,
-    //         };
-    //     })
-    // }
-    // function handleExpanded() {
-    //     setExpanded(true);
-    // }
+    function handleChange(e) {
+        setNote((prevvalue) => {
+            return {
+                ...prevvalue, [e.target.name]: [e.target.value]
+            };
+        })
+    }
+
+    // React.useEffect(() => {
+    //     props.getnote("");
+    // }, [])
 
     return (
         <div className="main">
@@ -42,11 +42,11 @@ function TakeNote() {
                 </div>
                 :
                 <div className='title'>
-                    <div> <InputBase className="titleName" placeholder="Title" fullWidth multiline></InputBase>
+                    <div> <InputBase className="titleName" placeholder="Title" fullWidth multiline onChange={handleChange}></InputBase>
 
                     </div>
-                    <div> <InputBase className="noteInput" placeholder="Take a note..." fullWidth multiline></InputBase></div>
-                    <div ><Icons />
+                    <div> <InputBase className="noteInput" placeholder="Take a note..." fullWidth multiline autoFocus onChange={handleChange}></InputBase></div>
+                    <div className="icon-btn"><Icons className="icon"/>
                         <span className="btn"><Button variant="text" onClick={() => setExpanded(true)}>Close</Button></span>
                     </div>
 
