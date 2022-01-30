@@ -10,7 +10,9 @@ import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined';
 
 import '../icons/Icons.scss'
 
-import { Popover } from "@material-ui/core";
+import { MenuItem } from "@material-ui/core";
+import Popover from "@mui/material/Popover"
+
 
 let colours = [
     "#f28b82", "#fbbc04", "#fff475", "#ccff90",
@@ -18,6 +20,7 @@ let colours = [
     "#fdcfe8", "#e6c9a8", "#e8eaed"
 ]
 
+let More = ["Delete note", "Add label", "Add drawing", "Make a copy", "Show tick boxes"]
 
 export class Icons extends Component {
     constructor(props) {
@@ -41,10 +44,25 @@ export class Icons extends Component {
         })
     }
 
-   
+    handleOpenMore = (e) => {
+        this.setState({
+            anchorEl: e.currentTarget
+        })
+    }
+
+    handleCloseMore = () => {
+        this.setState({
+            anchorEl: false
+        })
+    }
+
     render() {
 
         const { anchorEl, colour } = this.state
+
+        const open = Boolean(anchorEl);
+        const id = open ? 'simple-popover' : undefined;
+
         return (
 
             <div className="icon-main">
@@ -53,41 +71,62 @@ export class Icons extends Component {
 
 
                 <div>
-                    <IconButton> <ColorLensOutlinedIcon varient="contained" onClick={(e) => this.handleOpenColor(e)} /> 
-                    <Popover
-                        style={{ display: "flex" }}
-                        id="simple-menu"
-                        anchorEl={colour}
-                        keepMounted
-                        open={Boolean(colour)}
-                        onClose={this.handleCloseColor}
-                        anchorOrigin={{
-                            vertical: "bottom",
-                            horizontal: "left"
-                        }}
-                    >
-                        <Typography sx={{ p: 1 }}>
-                        {
-                            colours.map((item, index) => (
+                    <IconButton> <ColorLensOutlinedIcon onClick={(e) => this.handleOpenColor(e)} variant="contained" aria-describedby={id} />
+                        <Popover
+                            style={{ display: "flex" }}
+                            id="simple-popover"
+                            anchorEl={colour}
+                            keepMounted
+                            open={Boolean(colour)}
+                            onClose={this.handleCloseColor}
+                            anchorOrigin={{
+                                vertical: "bottom",
+                                horizontal: "left"
+                            }}
+                        >
+                            <Typography sx={{ p: 1 }}>
                                 <div className="icon-color">
-                                    <div className="color-pallets" onClick={() => this.upateColor(item)} style={{ backgroundColor: item }}>
-                                        {item.backgroundColor}
-                                    </div>
+                                    {
+                                        colours.map((item, index) => (
+                                            <div className="color-pallets" onClick={() => this.upateColor(item)} style={{ backgroundColor: item }}>
+                                                {item.backgroundColor}
+                                            </div>
+                                        ))
+                                    }
                                 </div>
-                            ))
-                        }
-                        </Typography>
-                    </Popover>
+                            </Typography>
+                        </Popover>
                     </IconButton>
                 </div>
                 <IconButton> <PhotoOutlinedIcon /> </IconButton>
                 <IconButton> <ArchiveOutlinedIcon /> </IconButton>
 
                 <div>
-                <IconButton> <MoreVertOutlinedIcon /> </IconButton>
-                        
+                    <IconButton> <MoreVertOutlinedIcon onClick={(e) => this.handleOpenMore(e)} /> </IconButton>
+                    <Popover
+                        id="simple-popover"
+                        anchorEl={anchorEl}
+                        keepMounted
+                        open={Boolean(anchorEl)}
+                        onClose={this.handleCloseMore}
+                        anchorOrigin={{
+                            vertical: "bottom",
+                            horizontal: "left"
+                        }}
+                    >
+                        {
+                            More.map((more, index) => (
+                                <MenuItem onClick={() => this.handleOpenMore(more)}>
+                                    {more}
+                                </MenuItem>
+                            ))
+                        }
+
+                    </Popover>
                 </div>
             </div>
         )
     }
 }
+
+export default Icons;

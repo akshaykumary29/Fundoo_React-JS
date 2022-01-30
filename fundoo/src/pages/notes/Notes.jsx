@@ -17,7 +17,6 @@ function Notes() {
             .then((res) => {
                 setnoteArr(res.data.data)
                 console.log(res.data.data);
-                // console.log(noteArr);
             })
             .catch((err) => {
                 console.log("Error= " + err);
