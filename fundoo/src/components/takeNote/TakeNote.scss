@@ -1,7 +1,7 @@
 .main{
   display: flex;
   justify-content: center;
-  padding-top: 20px;
+  padding-top: 30px;
 }
 
 .title-container{
@@ -46,27 +46,37 @@
 
   .noteInput{
     font-weight: bold;
-    padding: 10px 0px;
+    padding: 25px 0px;
+    color: #202124;
+    min-height: 46px;
   }
+
   .icon-btn{
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    width: 100%;
     line-height: 26px;
     margin: 4px 0;
-    // justify-content: space-around;
+    justify-content: space-around;
   }
 
-  .icon{
-    width: 80%;
-    align-items: flex-start;
-    justify-content: flex-start;
-  }
+  // .icon{
+  //   width: 80%;
+  //   display: flex;
+  //   justify-content: space-around;
+  // }
 
   .btn{
     display: flex;
-    // flex-direction: row;
+    flex-direction: row;
     justify-content: flex-end;
-    // color: rgba(0,0,0,0.87);
+    color: rgba(0,0,0,0.87);
     padding-right: 10px;
+
+    // background-color: white;
+    // border: none;
+    // color: rgb(99, 97, 97);
+    // font-size: 14px;
   }
 }

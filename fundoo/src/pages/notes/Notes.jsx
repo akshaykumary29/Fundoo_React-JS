@@ -1,37 +1,47 @@
 import React, { useState } from "react";
 import TakeNote from "../../components/takeNote/TakeNote";
 import DisplayNote from "../../components/displayNote/DisplayNote";
+import NoteServices from "../../services/NoteServices";
 
-export default function Notes() {
+function Notes() {
 
     const [noteArr, setnoteArr] = useState([])
 
-    const getAllNotes = (data) => {
-        NotesService.getnotes()
-        .then((res) => {
-            setnoteArr(res.data.data)
-            console.log(res.data.data);
-        })
-        .catch((err) => {
-            console.log("Error= " + err);
-        })
+
+    React.useEffect(() => {
+        getAllNotes();
+    }, [])
+
+    const getAllNotes = () => {
+        NoteServices.getNotes()
+            .then((res) => {
+                setnoteArr(res.data.data)
+                console.log(res.data.data);
+                // console.log(noteArr);
+            })
+            .catch((err) => {
+                console.log("Error= " + err);
+            })
     }
 
-    // const updateDisplayNote= () => {
-    //     NotesService.getnotes()
+    return <div>
+        <TakeNote getnote={getAllNotes} />
+        <DisplayNote noteArr={noteArr} />
+    </div>;
+}
+
+export default Notes;
+
+
+
+
+// const updateDiplayNote= () => {
+    //     NoteServices.getNotes()
     //     .then((res) => {
     //         setnoteArr(res.data.data)
+    //         console.log(res.data.data);
     //     })
     //     .catch((err) => {
     //         console.log(err);
     //     })
     // }
-return (
-    <div>
-        <TakeNote getnotes={getAllNotes} />
-        <DisplayNote />
-    </div>
-)
-
-
-}

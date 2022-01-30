@@ -48,7 +48,9 @@ export class Signin extends Component {
         }
         service.signin(data)
             .then((res) => {
-                console.log(res);
+                localStorage.setItem("token", res.data.data.token)
+                localStorage.setItem("id", res.data.data.userId)
+                console.log(res.data.data.data.token);
             })
             .catch((err) => {
                 console.log(err);
@@ -84,7 +86,7 @@ export class Signin extends Component {
                         />
                     </div>
                     <div className="pass">
-                        <TextField name="passwordVal" id="outlined-basic" label="Password" variant="outlined" fullWidth
+                        <TextField name="passwordVal" id="outlined-basic" label="Password" type="password" variant="outlined" fullWidth
                             error={this.state.passwordValError}
                             helperText={this.state.passwordValError ? "Password is required." : " "}
                             onChange={(e) => this.changeHandle(e)}

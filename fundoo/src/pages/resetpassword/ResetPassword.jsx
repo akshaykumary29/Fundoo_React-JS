@@ -42,7 +42,7 @@ export class ResetPassword extends Component {
 
     next = () => {
         let data = {
-            "password": "akki"
+            "password": this.state.password
         }
 
         service.resetpassword(data)

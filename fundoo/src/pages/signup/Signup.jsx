@@ -53,10 +53,10 @@ export class Signup extends Component {
 
     next = () => {
         let data = {
-            "firstName": "Suraj",
-            "lastName": "Yam",
-            "email": "suraj@gmail.com",
-            "password": "Suraj"
+            "firstName": this.state.firstName,
+            "lastName": this.state.lastName,
+            "email": this.state.userName,
+            "password": this.state.passWord
         };
 
         service.signup(data)

@@ -1,0 +1,22 @@
+.icon-main{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.icon-color{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    // position: absolute;
+
+}
+
+.color-pallets{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    width: 35px;
+    height: 35px;
+    border-radius: 20px;
+    margin: 0.5vh 0vw;
+}

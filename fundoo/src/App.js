@@ -32,9 +32,9 @@ function App() {
           <Route path='/forgotemail' component={ForgotEmail}></Route>
           <Route path='/resetpassword' component={ResetPassword}></Route>
           <Route path='/dashboard' component={Dashboard}></Route>
-          <Route path='/takeanote' component={TakeNote}></Route>
-          <Route path='/icons' component={Icons}></Route>
-          <Route path='/portals' component={Demoportals}></Route>
+          {/* <Route path='/takeanote' component={TakeNote}></Route> */}
+          {/* <Route path='/icons' component={Icons}></Route> */}
+          {/* <Route path='/portals' component={Demoportals}></Route> */}
           <Route path='*' component={() => "Oops! Page Not Found"}></Route>
         </Switch>
       </Router>    
@@ -42,3 +42,4 @@ function App() {
 }
 
 export default App;
+
