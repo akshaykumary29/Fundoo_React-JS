@@ -12,6 +12,7 @@ import '../icons/Icons.scss'
 
 import { MenuItem } from "@material-ui/core";
 import Popover from "@mui/material/Popover"
+import NoteServices from "../../services/NoteServices";
 
 
 let colours = [
@@ -54,6 +55,36 @@ export class Icons extends Component {
         this.setState({
             anchorEl: false
         })
+    }
+
+    upateColor = (clrValue) => {
+        if (this.props.mode === "create") {
+            // this.props.changeColor(clrValue)
+        }
+        else if (this.props.mode === "display") {
+            let data = {
+                "_id": this.props.item._id,
+                "colour": clrValue
+            }
+            NoteServices.updateNotes(data)
+                .then((res) => {
+                    console.log(res);
+                    this.props.getAllNotes()
+                    // this.props.changeColor()
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
+        }
+    }
+
+    useArchive = () => {
+        if (this.props.mode === "create") {
+            this.props.changeArchive()
+        }
+        else if (this.props.mode === "update") {
+            this.props.changeArchive()
+        }
     }
 
     render() {
@@ -99,7 +130,10 @@ export class Icons extends Component {
                     </IconButton>
                 </div>
                 <IconButton> <PhotoOutlinedIcon /> </IconButton>
-                <IconButton> <ArchiveOutlinedIcon /> </IconButton>
+
+                <div>
+                    <IconButton> <ArchiveOutlinedIcon onClick={(e) => this.useArchive(e)} /> </IconButton>
+                </div>
 
                 <div>
                     <IconButton> <MoreVertOutlinedIcon onClick={(e) => this.handleOpenMore(e)} /> </IconButton>

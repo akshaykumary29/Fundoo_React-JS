@@ -18,6 +18,10 @@ const NoteServices = {
      getNotes() {
         return axiosService.getNoteMethod(`${baseUrl}/getNotes`, headerConfig);
     },
+
+    updateNotes(data) {
+        return axiosService.updateMethod(`${baseUrl}/update`, data, headerConfig)
+    }
 }
 
 export default NoteServices;

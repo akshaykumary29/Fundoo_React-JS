@@ -3,6 +3,8 @@ import TakeNote from "../../components/takeNote/TakeNote";
 import DisplayNote from "../../components/displayNote/DisplayNote";
 import NoteServices from "../../services/NoteServices";
 
+import './Notes.scss'
+
 function Notes() {
 
     const [noteArr, setnoteArr] = useState([])
@@ -16,31 +18,17 @@ function Notes() {
         NoteServices.getNotes()
             .then((res) => {
                 setnoteArr(res.data.data)
-                console.log(res.data.data);
             })
             .catch((err) => {
                 console.log("Error= " + err);
             })
     }
 
-    return <div>
-        <TakeNote getnote={getAllNotes} />
-        <DisplayNote noteArr={noteArr} />
+    return <div className="note-container">
+        <div><TakeNote getnote={getAllNotes} /></div>
+        <div className="notes-box"> <DisplayNote noteArr={noteArr} getnote={getAllNotes} /> </div>
     </div>;
+
 }
 
 export default Notes;
-
-
-
-
-// const updateDiplayNote= () => {
-    //     NoteServices.getNotes()
-    //     .then((res) => {
-    //         setnoteArr(res.data.data)
-    //         console.log(res.data.data);
-    //     })
-    //     .catch((err) => {
-    //         console.log(err);
-    //     })
-    // }

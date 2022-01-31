@@ -12,6 +12,10 @@ class AxiosService {
     getNoteMethod(url, headers) {     
         return axios.get(url, headers)
     }
+
+    updateMethod(url, data, headers) {
+        return axios.post(url, data, headers)
+    }
 }
 
 export default AxiosService

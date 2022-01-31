@@ -30,10 +30,8 @@ function App() {
           <Route exact path='/register' component={Signup}></Route>
           <Route path='/signin' component={Signin}></Route>
           <Route path='/forgotemail' component={ForgotEmail}></Route>
-          <Route path='/resetpassword' component={ResetPassword}></Route>
+          <Route path='/resetpassword/:id' component={ResetPassword}></Route>
           <Route path='/dashboard' component={Dashboard}></Route>
-          {/* <Route path='/takeanote' component={TakeNote}></Route> */}
-          {/* <Route path='/icons' component={Icons}></Route> */}
           {/* <Route path='/portals' component={Demoportals}></Route> */}
           <Route path='*' component={() => "Oops! Page Not Found"}></Route>
         </Switch>

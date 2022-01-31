@@ -12,11 +12,12 @@ import NoteServices from "../../services/NoteServices";
 
 function TakeNote(props) {
     const [isExpanded, setExpanded] = useState(true);
+    const [archive, setArchive] = useState(false)
 
     const [note, setNote] = useState({
         title: "",
         description: "",
-        colour: "",
+        colour: "#ffffff",
         isArchived: "",
         isDeleted: ""
     });
@@ -27,7 +28,14 @@ function TakeNote(props) {
                 ...prevvalue, [e.target.name]: e.target.value
             };
         })
-        console.log(note);
+    }
+
+    const changeColour = (val) => {
+        setNote(val)
+    }
+
+    const changeArchive = () => {
+        setArchive(true)
     }
 
     const close = () => {
@@ -35,13 +43,21 @@ function TakeNote(props) {
             "title": note.title,
             "description": note.description,
             "colour": note.colour,
-            "isArchived": false,
+            "isArchived": archive,
             "isDeleted": false
         }
         setExpanded(true)
         NoteServices.addNotes(data)
             .then((res) => {
                 props.getnote();
+
+                setNote({
+                    title: '',
+                    description: '',
+                    colour: '#ffffff',
+                    isArchived: false,
+                    isDeleted: false
+                })
                 console.log(res);
             })
             .catch((err) => {
@@ -62,13 +78,14 @@ function TakeNote(props) {
                     </div>
                 </div>
                 :
-                <div className='title'>
+                <div className='title' style={{ backgroundColor : note.colour }}>
                     <div> <InputBase className="titleName" name="title" placeholder="Title" fullWidth multiline onChange={(e) => handleChange(e)}></InputBase>
 
                     </div>
                     <div> <InputBase className="noteInput" name="description" placeholder="Take a note..." fullWidth multiline autoFocus onChange={(e) => handleChange(e)}></InputBase></div>
-                    <div className="icon-btn"><Icons className="icon" />
-                        <span className="btn"><Button variant="text" onClick={() => close()}>Close</Button></span>
+                    <div className="icon-btn">
+                        <Icons className="icon"  mode="create" changeColour= {(val) => changeColour(val)} changeArchive={() => changeArchive()} />
+                        <span className="btn"><Button variant="text" style={{ backgroundColor: note.colour }} onClick={() => close()}>Close</Button></span>
                     </div>
                 </div>
             }
