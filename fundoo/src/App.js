@@ -32,6 +32,7 @@ function App() {
         <Route path='/signin' component={Signin}></Route>
         <Route path='/forgotemail' component={ForgotEmail}></Route>
         <Route path='/resetpassword/:id' component={ResetPassword}></Route>
+
         <ProtectedRoute Route path='/dashboard' component={Dashboard}></ProtectedRoute>
         {/* <Route path='/portals' component={Demoportals}></Route> */}
         <Route path='*' component={() => "Oops! Page Not Found"}></Route>

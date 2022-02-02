@@ -139,7 +139,7 @@ function DisplayNote(props) {
                                 <div className='title1'>{notes.title}</div>
                                 <div className='title-desc'>{notes.description}</div>
                             </div>
-                            <div className='icons'><Icons mode="display" notes={notes} changeColour1={ changeColor } changeArchive={() => changeArchive(notes._id)} isdeleteChange={() => isdeleteChange(notes._id)} /></div>
+                            <div className='icons'><Icons mode="display" notes={notes} changeColour1={ changeColor } changeArchive={() => changeArchive(notes._id)} isdeleteChange={() => isdeleteChange(notes._id)} getnote={()=>props.getnote()} /></div>
                         </div>
                     </div>
                 })
@@ -151,12 +151,12 @@ function DisplayNote(props) {
 
                             <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
 
-                                <input type="text" style={{ border: "none", outline: "none", backgroundColor: notes.colour }} value={notes.title} name="title" onChange={(e) => { changeField(e, notes._id) }} />
+                                <input type="text" name="title" style={{ border: "none", outline: "none", backgroundColor: notes.colour }} value={notes.title} name="title" onChange={(e) => { changeField(e, notes._id) }} />
 
                             </BootstrapDialogTitle>
                             <DialogContent>
 
-                                <input type="text" style={{ border: "none", outline: "none", backgroundColor: notes.colour }} value={notes.description} name="description" onChange={(e) => { changeField(e, notes._id) }} />
+                                <input type="text" name="description" style={{ border: "none", outline: "none", backgroundColor: notes.colour }} value={notes.description} name="description" onChange={(e) => { changeField(e, notes._id) }} />
 
                             </DialogContent>
                             <DialogContent className="close-Icon">
@@ -164,7 +164,7 @@ function DisplayNote(props) {
                                 <Icons mode="update" notes={notes}
                                     changeColour1={changeColor} changeArchive={changeArchive} isdeleteChange={() => isdeleteChange(notes._id)} />
                                 {/* updateNote={this.props.updateNote} */}
-                                <Button autoFocus onClick={(title, description) => handleClose(title, description)}> Close </Button>
+                                <Button autoFocus onClick={() => handleClose(notes)}> Close </Button>
 
                             </DialogContent>
                         </div>

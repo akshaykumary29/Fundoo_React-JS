@@ -50,8 +50,8 @@ export class Signin extends Component {
         service.signin(data)
             .then((res) => {
                 localStorage.setItem("token", res.data.data.token)
-                localStorage.setItem("id", res.data.data.userId)
-                // console.log(res.data.data.data.token);
+                // localStorage.setItem("id", res.data.data.userId)
+                console.log(res.data.data.token);
                 Redirect('/dashboard')
 
             })
@@ -82,14 +82,14 @@ export class Signin extends Component {
                         <p className="account">Use your Fundoo Account</p>
                     </div>
                     <div className="email">
-                        <TextField name="emailVal" id="outlined-basic" label="Email or phone" variant="outlined" fullWidth autoFocus
+                        <TextField name="email" id="outlined-basic" label="Email or phone" variant="outlined" fullWidth autoFocus
                             error={this.state.emailError}
                             helperText={this.state.emailError ? "Email or Phone is required." : " "}
                             onChange={(e) => this.changeHandle(e)}
                         />
                     </div>
                     <div className="pass">
-                        <TextField name="passwordVal" id="outlined-basic" label="Password" type="password" variant="outlined" fullWidth
+                        <TextField name="password" id="outlined-basic" label="Password" type="password" variant="outlined" fullWidth
                             error={this.state.passwordError}
                             helperText={this.state.passwordError ? "Password is required." : " "}
                             onChange={(e) => this.changeHandle(e)}

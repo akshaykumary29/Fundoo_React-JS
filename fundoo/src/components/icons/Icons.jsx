@@ -58,7 +58,7 @@ export class Icons extends Component {
 
     upateColor = (val) => {
         if (this.props.mode === "create") {
-            this.props.changeColor1(val)
+            this.props.changeColour1(val)
         }
         else if (this.props.mode === "display") {
             let data = {
@@ -68,8 +68,7 @@ export class Icons extends Component {
             NoteServices.updateNotes(data)
                 .then((res) => {
                     console.log(res);
-                    // this.props.changeColor()
-                    this.props.changeColor1()
+                    this.props.changeColour1() //refresh ui..calling getnotes
                 })
                 .catch(() => {
                     // console.log();
@@ -81,7 +80,7 @@ export class Icons extends Component {
         if (this.props.mode === "create") {
             this.props.changeArchive()
         }
-        else if (this.props.mode === "update") {
+        else if (this.props.mode === "display") {
             this.props.changeArchive()
         }
     }
@@ -105,9 +104,8 @@ export class Icons extends Component {
                 <IconButton> <AddAlertOutlinedIcon /> </IconButton>
                 <IconButton> <PersonAddAlt1OutlinedIcon /> </IconButton>
 
-                {/* aria-describedby={id} */}
                 <div>
-                    <IconButton> <ColorLensOutlinedIcon onClick={(e) => this.handleOpenColor(e)} variant="contained"  />
+                    <IconButton> <ColorLensOutlinedIcon onClick={(e) => this.handleOpenColor(e)} variant="contained" />
                         <Popover
                             style={{ display: "flex" }}
                             id="simple-menu"
@@ -137,7 +135,7 @@ export class Icons extends Component {
                 <IconButton> <PhotoOutlinedIcon /> </IconButton>
 
                 <div>
-                    <IconButton> <ArchiveOutlinedIcon onClick={(e) => this.useArchive(e)} /> </IconButton>
+                    <IconButton> <ArchiveOutlinedIcon onClick={this.useArchive} /> </IconButton>
                 </div>
 
                 <div>

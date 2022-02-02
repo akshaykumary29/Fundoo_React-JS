@@ -39,6 +39,7 @@ import { typography } from '@mui/system';
 import Notes from '../notes/Notes';
 
 import { Redirect } from 'react-router-dom';
+import SignOut from '../signOut/SignOut';
 
 const drawerWidth = 240;
 
@@ -116,8 +117,8 @@ export default function MiniDrawer() {
     const [open, setOpen] = React.useState(false);
 
     React.useEffect(() => {
-        if(!localStorage.getItem("token")) {
-            // Redirect('/signin')
+        if (!localStorage.getItem("token")) {
+            Redirect('/signin')
         }
     }, [])
 
@@ -182,7 +183,10 @@ export default function MiniDrawer() {
                                 <IconButton> <ViewAgendaOutlinedIcon /> </IconButton>
                                 <IconButton> <SettingsOutlinedIcon /> </IconButton>
                                 <IconButton> <AppsOutlinedIcon /></IconButton>
-                                <IconButton> <AccountCircleOutlinedIcon /></IconButton>
+                                <IconButton> <SignOut /> </IconButton>
+                                {/* <div>
+                                    <SignOut />
+                                </div> */}
                             </ul>
                         </div>
                     </div>

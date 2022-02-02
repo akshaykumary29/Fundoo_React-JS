@@ -17,7 +17,8 @@ function Notes() {
     const getAllNotes = () => {
         NoteServices.getNotes()
             .then((res) => {
-                setnoteArr(res.data.data)
+                let filteredData = res.data.data.filter(data => data.isArchived!==true && data.isDeleted !==true)
+                setnoteArr(filteredData)
             })
             .catch((err) => {
                 console.log("Error= " + err);
