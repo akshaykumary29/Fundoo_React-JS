@@ -4,6 +4,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import UserService from "../../services/UserService";
 import { Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 const service = new UserService();
 
@@ -14,10 +15,10 @@ export class Signin extends Component {
         super(props)
 
         this.state = {
-            emailVal: '',
-            passwordVal: '',
-            emailValError: false,
-            passwordValError: false
+            email: '',
+            password: '',
+            emailError: false,
+            passwordError: false
         }
     }
 
@@ -30,27 +31,29 @@ export class Signin extends Component {
     validation = () => {
         let isError = false;
         const error = this.state;
-        error.emailValError = this.state.emailVal === '' ? true : false;
-        error.passwordValError = this.state.passwordVal === '' ? true : false;
+        error.emailError = this.state.email === '' ? true : false;
+        error.passwordError = this.state.password === '' ? true : false;
 
         this.setState({
             ...error
         })
 
-        return isError = error.emailValError || error.passwordValError;
+        return isError = error.emailError || error.passwordError;
     }
 
     next = () => {
 
         let data = {
-            "email": "akki@gmail.com",
-            "password": "akki"
+            "email": this.state.email,
+            "password": this.state.password
         }
         service.signin(data)
             .then((res) => {
                 localStorage.setItem("token", res.data.data.token)
                 localStorage.setItem("id", res.data.data.userId)
-                console.log(res.data.data.data.token);
+                // console.log(res.data.data.data.token);
+                Redirect('/dashboard')
+
             })
             .catch((err) => {
                 console.log(err);
@@ -80,15 +83,15 @@ export class Signin extends Component {
                     </div>
                     <div className="email">
                         <TextField name="emailVal" id="outlined-basic" label="Email or phone" variant="outlined" fullWidth autoFocus
-                            error={this.state.emailValError}
-                            helperText={this.state.emailValError ? "Email or Phone is required." : " "}
+                            error={this.state.emailError}
+                            helperText={this.state.emailError ? "Email or Phone is required." : " "}
                             onChange={(e) => this.changeHandle(e)}
                         />
                     </div>
                     <div className="pass">
                         <TextField name="passwordVal" id="outlined-basic" label="Password" type="password" variant="outlined" fullWidth
-                            error={this.state.passwordValError}
-                            helperText={this.state.passwordValError ? "Password is required." : " "}
+                            error={this.state.passwordError}
+                            helperText={this.state.passwordError ? "Password is required." : " "}
                             onChange={(e) => this.changeHandle(e)}
                         />
                     </div>

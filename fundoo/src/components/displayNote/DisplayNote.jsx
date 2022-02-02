@@ -49,13 +49,19 @@ const BootstrapDialogTitle = (props) => {
 function DisplayNote(props) {
     const [open, setopen] = useState(false)
 
+    const [dialogbox, setDialogbox] = useState({
+        title: "",
+        description: "",
+        _id: ""
+    })
+
     const [notes, setNotes] = useState({
         _id: "",
         title: "",
         description: "",
         isArchived: "",
         isDeleted: "",
-        colour: props.noteArr
+        colour: "#ffffff"
     })
 
     const changeColor = () => {
@@ -77,31 +83,63 @@ function DisplayNote(props) {
             })
     }
 
-    const handleOpen = (item) => {
+    const isdeleteChange = (id) => {
+        let data = {
+            "_id": id,
+            "isDeleted": true
+        }
+        NoteServices.updateNotes(data)
+            .then((res) => {
+                props.getnote()
+            })
+            .catch((err) => {
+
+            })
+    }
+
+    const handleOpen = (data) => {
+        setNotes(data)
         setopen(true)
-        setNotes({
-            title: item.title,
-            description: item.description,
-            _id: item.id
+        setDialogbox({
+            title: data.title,
+            description: data.description,
+            // _id: item.id
         })
     }
 
-    const handleClose = () => {
+    const handleClose = (id) => {
         setopen(false)
+        let data = {
+            "_id": id,
+            "title": dialogbox.title,
+            "description": dialogbox.description
+        }
+        NoteServices.updateNotes(data)
+        .then((res) => {
+            props.getnote()
+        })
+        .catch((err) => {
+            
+        })
+    }
 
+    const changeField = (e, id) => {
+        setDialogbox(previousvalues => {
+            return{ ...previousvalues, [e.target.name]: e.target.value, '_id': id}
+        })
     }
 
     if (props.noteArr) {
         return (
             <>
-                {props.noteArr.map((item, index) => {
-                    return <div className='mainDisplay'>
-                        <div className='displayBox' style={{ backgroundColor: item.colour }}>
-                            <div onClick={() => handleOpen(item)}>
-                                <div className='title1'>{item.title}</div>
-                                <div className='title-desc'>{item.description}</div>
+                {props.noteArr.map((notes, index) => {
+                    return <div className='mainDisplay' key={index}>
+                        <div className='displayBox' style={{ backgroundColor: notes.colour }}>
+                            <div onClick={() => handleOpen(notes)}>
+                                <div className='title1'>{notes.title}</div>
+                                <div className='title-desc'>{notes.description}</div>
                             </div>
-                            <div className='icons'><Icons mode="display" item={item} changeColor={changeColor} changeArchive={() => changeArchive(item._id)} /></div>
+                            <div className='icons'><Icons mode="display" notes={notes} changeColour1={ changeColor } changeArchive={() => changeArchive(notes._id)} isdeleteChange={() => isdeleteChange(notes._id)} /></div>
                         </div>
                     </div>
                 })
@@ -113,18 +151,18 @@ function DisplayNote(props) {
 
                             <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
 
-                                <input type="text" style={{ border: "none", outline: "none", backgroundColor: notes.colour }} value={notes.title} name="title" />
+                                <input type="text" style={{ border: "none", outline: "none", backgroundColor: notes.colour }} value={notes.title} name="title" onChange={(e) => { changeField(e, notes._id) }} />
 
                             </BootstrapDialogTitle>
                             <DialogContent>
 
-                                <input type="text" style={{ border: "none", outline: "none", backgroundColor: notes.colour }} value={notes.description} name="description" />
+                                <input type="text" style={{ border: "none", outline: "none", backgroundColor: notes.colour }} value={notes.description} name="description" onChange={(e) => { changeField(e, notes._id) }} />
 
                             </DialogContent>
                             <DialogContent className="close-Icon">
 
-                                <Icons mode="update" noteId={notes._id}
-                                    changeColor={changeColor} changeArchive={changeArchive} />
+                                <Icons mode="update" notes={notes}
+                                    changeColour1={changeColor} changeArchive={changeArchive} isdeleteChange={() => isdeleteChange(notes._id)} />
                                 {/* updateNote={this.props.updateNote} */}
                                 <Button autoFocus onClick={(title, description) => handleClose(title, description)}> Close </Button>
 

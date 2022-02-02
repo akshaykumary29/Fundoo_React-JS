@@ -38,6 +38,8 @@ import DisplayNote from '../../components/displayNote/DisplayNote';
 import { typography } from '@mui/system';
 import Notes from '../notes/Notes';
 
+import { Redirect } from 'react-router-dom';
+
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -74,10 +76,10 @@ const AppBar = styled(MuiAppBar, {
     shouldForwardProp: (prop) => prop !== 'open',
 })(({ theme, open }) => ({
     zIndex: theme.zIndex.drawer + 1,
-    backgroundColor:"white",
-    boxShadow:"0px",
-    border:"1px solid lightgray",
-    color:"black",
+    backgroundColor: "white",
+    boxShadow: "0px",
+    border: "1px solid lightgray",
+    color: "black",
     transition: theme.transitions.create(['width', 'margin'], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
@@ -113,21 +115,27 @@ export default function MiniDrawer() {
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
 
+    React.useEffect(() => {
+        if(!localStorage.getItem("token")) {
+            // Redirect('/signin')
+        }
+    }, [])
+
     let list = [
         {
-            text:"Notes",
+            text: "Notes",
             icons: <LightbulbOutlinedIcon />,
         },
         {
-            text:"Reminders",
+            text: "Reminders",
             icons: <NotificationsOutlinedIcon />,
         },
         {
-            text:"Edit labels",
+            text: "Edit labels",
             icons: <CreateOutlinedIcon />,
         },
         {
-            text:"Archive",
+            text: "Archive",
             icons: <ArchiveOutlinedIcon />,
         },
         {
@@ -201,10 +209,10 @@ export default function MiniDrawer() {
                     ))}
                 </List>
             </Drawer>
-            <Box component="main" sx={{ flexGrow: 1 , p: 2}}>
+            <Box component="main" sx={{ flexGrow: 1, p: 2 }}>
                 <DrawerHeader />
                 <typography>
-                    
+
                     <Notes />
 
                 </typography>

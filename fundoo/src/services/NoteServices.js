@@ -15,7 +15,7 @@ const NoteServices = {
         return axiosService.postMethod(`${baseUrl}/addNotes`, data, headerConfig);
     },
 
-     getNotes() {
+    getNotes() {
         return axiosService.getNoteMethod(`${baseUrl}/getNotes`, headerConfig);
     },
 

@@ -32,7 +32,6 @@ export class Icons extends Component {
         }
     }
 
-
     handleOpenColor = (e) => {
         this.setState({
             colour: e.currentTarget,
@@ -57,23 +56,23 @@ export class Icons extends Component {
         })
     }
 
-    upateColor = (clrValue) => {
+    upateColor = (val) => {
         if (this.props.mode === "create") {
-            // this.props.changeColor(clrValue)
+            this.props.changeColor1(val)
         }
         else if (this.props.mode === "display") {
             let data = {
-                "_id": this.props.item._id,
-                "colour": clrValue
+                "_id": this.props.notes._id,
+                "colour": val,
             }
             NoteServices.updateNotes(data)
                 .then((res) => {
                     console.log(res);
-                    this.props.getAllNotes()
                     // this.props.changeColor()
+                    this.props.changeColor1()
                 })
-                .catch((err) => {
-                    console.log(err);
+                .catch(() => {
+                    // console.log();
                 })
         }
     }
@@ -87,12 +86,18 @@ export class Icons extends Component {
         }
     }
 
+    handleMore = () => {
+        if (this.props.mode === "display") {
+            this.props.isdeleteChange()
+        }
+    }
+
     render() {
 
         const { anchorEl, colour } = this.state
 
-        const open = Boolean(anchorEl);
-        const id = open ? 'simple-popover' : undefined;
+        // const open = Boolean(anchorEl);
+        // const id = open ? 'simple-popover' : undefined;
 
         return (
 
@@ -100,12 +105,12 @@ export class Icons extends Component {
                 <IconButton> <AddAlertOutlinedIcon /> </IconButton>
                 <IconButton> <PersonAddAlt1OutlinedIcon /> </IconButton>
 
-
+                {/* aria-describedby={id} */}
                 <div>
-                    <IconButton> <ColorLensOutlinedIcon onClick={(e) => this.handleOpenColor(e)} variant="contained" aria-describedby={id} />
+                    <IconButton> <ColorLensOutlinedIcon onClick={(e) => this.handleOpenColor(e)} variant="contained"  />
                         <Popover
                             style={{ display: "flex" }}
-                            id="simple-popover"
+                            id="simple-menu"
                             anchorEl={colour}
                             keepMounted
                             open={Boolean(colour)}
@@ -138,7 +143,7 @@ export class Icons extends Component {
                 <div>
                     <IconButton> <MoreVertOutlinedIcon onClick={(e) => this.handleOpenMore(e)} /> </IconButton>
                     <Popover
-                        id="simple-popover"
+                        id="simple-menu"
                         anchorEl={anchorEl}
                         keepMounted
                         open={Boolean(anchorEl)}
@@ -150,7 +155,7 @@ export class Icons extends Component {
                     >
                         {
                             More.map((more, index) => (
-                                <MenuItem onClick={() => this.handleOpenMore(more)}>
+                                <MenuItem onClick={() => this.handleMore(more)}>
                                     {more}
                                 </MenuItem>
                             ))

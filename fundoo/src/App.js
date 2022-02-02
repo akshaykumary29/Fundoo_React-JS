@@ -14,28 +14,29 @@ import Dashboard from './pages/dashboard/Dashboard'
 import TakeNote from './components/takeNote/TakeNote';
 import { Icons } from './components/icons/Icons';
 import Demoportals from './pages/portals/Demoportals';
+import ProtectedRoute from './components/protectedRoute/ProtectedRoute';
 
 
 
 function App() {
   return (
     // <div className="App">
-      // <Signup />
+    // <Signup />
     //    {/* <Signin /> */}
     //   {/* <ForgotEmail /> */}
     //   {/* <ResetPassword />
     //   </div>
-      <Router>
-        <Switch>
-          <Route exact path='/register' component={Signup}></Route>
-          <Route path='/signin' component={Signin}></Route>
-          <Route path='/forgotemail' component={ForgotEmail}></Route>
-          <Route path='/resetpassword/:id' component={ResetPassword}></Route>
-          <Route path='/dashboard' component={Dashboard}></Route>
-          {/* <Route path='/portals' component={Demoportals}></Route> */}
-          <Route path='*' component={() => "Oops! Page Not Found"}></Route>
-        </Switch>
-      </Router>    
+    <Router>
+      <Switch>
+        <Route exact path='/register' component={Signup}></Route>
+        <Route path='/signin' component={Signin}></Route>
+        <Route path='/forgotemail' component={ForgotEmail}></Route>
+        <Route path='/resetpassword/:id' component={ResetPassword}></Route>
+        <ProtectedRoute Route path='/dashboard' component={Dashboard}></ProtectedRoute>
+        {/* <Route path='/portals' component={Demoportals}></Route> */}
+        <Route path='*' component={() => "Oops! Page Not Found"}></Route>
+      </Switch>
+    </Router>
   );
 }
 
