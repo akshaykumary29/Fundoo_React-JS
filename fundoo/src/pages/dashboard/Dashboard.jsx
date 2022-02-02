@@ -116,11 +116,11 @@ export default function MiniDrawer() {
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
 
-    React.useEffect(() => {
-        if (!localStorage.getItem("token")) {
-            Redirect('/signin')
-        }
-    }, [])
+    // React.useEffect(() => {
+    //     if (!localStorage.getItem("token")) {
+    //         history.push('/signin')
+    //     }
+    // }, [])
 
     let list = [
         {

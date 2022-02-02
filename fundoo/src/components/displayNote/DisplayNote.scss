@@ -46,3 +46,59 @@
     display: flex;
     margin: 0vh -2vw;
 }
+
+@media screen and (max-width:900px) {
+    .mainDisplay{
+        grid-template-columns: repeat(4,1fr);
+        width: 100%;
+    }
+    .displayBox{
+        width: 80%;
+        margin: 15px auto;
+    }
+}
+
+@media screen and (max-width:850px) {
+    .mainDisplay{
+        grid-template-columns: repeat(3,1fr);
+        width: 100%;
+    }
+    .displayBox{
+        width: 65%;
+        margin: 15px auto;
+    }
+}
+
+@media screen and (max-width:650px) {
+    .mainDisplay{
+        grid-template-columns: repeat(3,1fr);
+        width: 100%;
+    }
+    .displayBox{
+        width: 68%;
+        margin: 15px auto;
+    }
+}
+
+@media screen and (max-width:500px) {
+    .mainDisplay{
+        grid-template-columns: repeat(2,1fr);
+        width: 100%;
+    }
+    .displayBox{
+        width: 50%;
+        margin: 15px auto;
+    }
+}
+
+@media screen and (max-width:420px) {
+    .mainDisplay{
+        grid-template-columns: repeat(1,1fr);
+        width: 100%;
+    }
+    .displayBox{
+        width: 40%;
+        margin: 10px auto;
+        
+    }
+}

@@ -24,8 +24,8 @@ export default function SignOut() {
 
     return (
         <div className='signOut-page'>
-            <IconButton aria-describedby={id} onClick={handleClick} style={{ backgroundColor: 'white' }}>
-                <div className="profileIcon"> < AccountCircleOutlinedIcon /></div>
+            <IconButton>
+                < AccountCircleOutlinedIcon aria-describedby={id} onClick={handleClick} style={{ backgroundColor: 'white' }} />
             </IconButton>
             <Popover
                 id={id}

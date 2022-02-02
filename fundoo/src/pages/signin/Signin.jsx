@@ -49,8 +49,12 @@ export class Signin extends Component {
         }
         service.signin(data)
             .then((res) => {
+                localStorage.setItem("firstName", res.data.data.firstName)
+                localStorage.setItem("lastName", res.data.data.lastName)
+                localStorage.setItem("email", res.data.data.email)
+                localStorage.setItem("password", res.data.data.password)
                 localStorage.setItem("token", res.data.data.token)
-                // localStorage.setItem("id", res.data.data.userId)
+                localStorage.setItem("id", res.data.data.userId)
                 console.log(res.data.data.token);
                 Redirect('/dashboard')
 
