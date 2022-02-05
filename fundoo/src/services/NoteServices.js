@@ -21,7 +21,17 @@ const NoteServices = {
 
     updateNotes(data) {
         return axiosService.updateMethod(`${baseUrl}/update`, data, headerConfig)
+    },
+
+    getisArchived() {
+        return axiosService.getNoteMethod(`${baseUrl}/isArchived`, headerConfig)
+    },
+
+    getisDeleted() {
+        return axiosService.getNoteMethod(`${baseUrl}/isBin`, headerConfig)
     }
+
+
 }
 
 export default NoteServices;

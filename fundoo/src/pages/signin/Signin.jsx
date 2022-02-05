@@ -4,13 +4,15 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import UserService from "../../services/UserService";
 import { Link } from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import { Redirect } from "react-router-dom";
 
 const service = new UserService();
-
+const history = useHistory;
 
 export class Signin extends Component {
-
+    
+    
     constructor(props) {
         super(props)
 
@@ -41,6 +43,7 @@ export class Signin extends Component {
         return isError = error.emailError || error.passwordError;
     }
 
+    
     next = () => {
 
         let data = {
@@ -49,14 +52,26 @@ export class Signin extends Component {
         }
         service.signin(data)
             .then((res) => {
+                localStorage.setItem("token", res.data.data.token)
                 localStorage.setItem("firstName", res.data.data.firstName)
                 localStorage.setItem("lastName", res.data.data.lastName)
                 localStorage.setItem("email", res.data.data.email)
-                localStorage.setItem("password", res.data.data.password)
-                localStorage.setItem("token", res.data.data.token)
                 localStorage.setItem("id", res.data.data.userId)
                 console.log(res.data.data.token);
-                Redirect('/dashboard')
+
+                // history.push('/dashboard');
+                // Redirect
+                React.useEffect(() => {
+                    if (localStorage.getItem("token")) {
+                        Redirect('/')
+                    }
+                }, [])
+
+                
+                    // if (localStorage.getItem("token")) {
+                        // Redirect('/')
+                    // }
+                
 
             })
             .catch((err) => {
@@ -105,9 +120,9 @@ export class Signin extends Component {
                         <p className="learnmore">Learn more</p>
                     </div>
                     <div className="create">
-                        <Link to="/"> <p className="c-text" >Create account</p></Link>
+                        <Link to="/register"> <p className="c-text" >Create account</p></Link>
                         <div className="next">
-                            <Button variant="contained" onClick={this.next}>Next</Button>
+                         <Link to="/"> <Button style={{ backgroundColor: 'blue' }} variant="contained" onClick={this.next}>Next</Button></Link>
                         </div>
                     </div>
                 </div>

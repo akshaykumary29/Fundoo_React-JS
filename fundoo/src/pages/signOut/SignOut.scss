@@ -1,22 +1,40 @@
-.userName{
-    width: 250px;
-    height: 150px;
-}
 
-.fundoo{
+.userDetail{
+  width: 345px;
+  height: auto;
+  border-radius: 10%;
+
+.detail {
     display: flex;
-    font-size: 30px;
-    margin: -3vh 0vw -4vh 0vw;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .manage-account {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    height: 30px;
+    border: 1px solid;
+    border-radius: 4px;
+    margin-top: 5%;
+  }
+  .image-details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+    border: 1px solid;
+    font-size: 75px;
+    color: cornsilk;
+    background-color: darkgreen;
+  }
+  .signOut{
+    display: flex;
+    justify-content: center;
+    // align-items: center;
+    font-size: 16px;
 }
-.signOut{
-    font-size: 30px;
-}
-
-.nameDetail{
-    font-size: 20px;
-    margin: -2vh 0vw;
-}
-.emailDetail{
-    font-size: 20px;
-    margin: 2vh 0vw;
 }

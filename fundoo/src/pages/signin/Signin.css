@@ -1,6 +1,6 @@
 .login-page{
     width: 100%;
-    margin: 15vh 0vw;
+    margin: 10vh 0vw;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -97,3 +97,17 @@
     text-align: right;
 }
 
+@media screen and (max-width:430px) {
+    .login-page{
+        display: flex;
+        width: 100%;
+        /* z-index: -1; */
+    }
+    .login-container{
+        border-radius: 0px;
+        border: 0px solid #dadce0;
+        width: 90%;
+        padding-left: 3%;
+        padding-right: 1%;
+    }
+}

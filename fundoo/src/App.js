@@ -15,6 +15,8 @@ import TakeNote from './components/takeNote/TakeNote';
 import { Icons } from './components/icons/Icons';
 import Demoportals from './pages/portals/Demoportals';
 import ProtectedRoute from './components/protectedRoute/ProtectedRoute';
+import IsBin from './pages/bin/IsBin';
+import Archive from './pages/archive/Archive';
 
 
 
@@ -28,14 +30,20 @@ function App() {
     //   </div>
     <Router>
       <Switch>
-        <Route exact path='/register' component={Signup}></Route>
-        <Route path='/signin' component={Signin}></Route>
-        <Route path='/forgotemail' component={ForgotEmail}></Route>
-        <Route path='/resetpassword/:id' component={ResetPassword}></Route>
+        <Route exact path='/register' component={Signup} />
+        <Route path='/signin' component={Signin} />
+        <Route path='/forgotemail' component={ForgotEmail} /> 
+        <Route path='/resetpassword/:id' component={ResetPassword} />
 
-        <ProtectedRoute Route path='/dashboard' component={Dashboard}></ProtectedRoute>
+        {/* <ProtectedRoute path='/dashboard' component={Dashboard}></ProtectedRoute> */}
+
+        <ProtectedRoute path='/' component={Dashboard} /> 
+          <Route exact path='/archive' component={Archive} />
+          <Route exact path='/deleted' component={IsBin} />
+      
+
         {/* <Route path='/portals' component={Demoportals}></Route> */}
-        <Route path='*' component={() => "Oops! Page Not Found"}></Route>
+        <Route path='*' component={() => "Oops! Page Not Found"} />
       </Switch>
     </Router>
   );

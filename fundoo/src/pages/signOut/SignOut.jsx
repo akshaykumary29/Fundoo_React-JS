@@ -21,11 +21,14 @@ export default function SignOut() {
     const open = Boolean(anchorEl);
     const id = open ? 'simple-popover' : undefined;
 
+    const signOut = () => {
+        localStorage.clear()
+    }
 
     return (
         <div className='signOut-page'>
-            <IconButton>
-                < AccountCircleOutlinedIcon aria-describedby={id} onClick={handleClick} style={{ backgroundColor: 'white' }} />
+            <IconButton aria-describedby={id} onClick={handleClick} style={{ backgroundColor: "white" }}>
+                < AccountCircleOutlinedIcon />
             </IconButton>
             <Popover
                 id={id}
@@ -39,19 +42,15 @@ export default function SignOut() {
             >
                 <Typography sx={{ p: 2 }} >
                     <div className='userDetail'>
+                        <div className="detail">
+                            <div className="image-details">{(localStorage.getItem("firstName")).charAt(0).toUpperCase()}</div>
 
-                        <div className='userName' >
-                            <div className="fundoo">
-                                <p style={{ color: 'blue' }} >F</p>
-                                <p style={{ color: 'red' }}>u</p>
-                                <p style={{ color: 'yellow' }}>n</p>
-                                <p style={{ color: 'blue' }}>d</p>
-                                <p style={{ color: 'green' }}>o</p>
-                                <p style={{ color: 'red' }}>o</p>
-                            </div>
+                            <h4>{localStorage.getItem("firstName") + " " + localStorage.getItem("lastName")}</h4>
+                            <div>{localStorage.getItem("email")}</div>
+                            <div className="manage-account">Manage your account</div>
                         </div>
                         <div>
-                            <Link to="/signin"> <Button className='signOut'>Sign Out</Button> </Link>
+                            <Link to="/signin"> <Button className='signOut' onClick={signOut} >Sign Out</Button> </Link>
                         </div>
                     </div>
                 </Typography>

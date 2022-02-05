@@ -9,7 +9,7 @@ class AxiosService {
         return axios.get(url, data, headers)
     }
 
-    getNoteMethod(url, headers) {
+    getNoteMethod(url, headers = false) {
         return axios.get(url, headers)
     }
 

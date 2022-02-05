@@ -10,13 +10,10 @@ import Typography from '@mui/material/Typography';
 // import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
 
 import SearchIcon from '@mui/icons-material/Search';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOffOutlined'
@@ -32,14 +29,21 @@ import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
 import ArchiveOutlinedIcon from '@mui/icons-material/ArchiveOutlined';
 import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
 
-import '../dashboard/Dashboard.scss'
-import TakeNote from '../../components/takeNote/TakeNote';
-import DisplayNote from '../../components/displayNote/DisplayNote';
-import { typography } from '@mui/system';
-import Notes from '../notes/Notes';
 
-import { Redirect } from 'react-router-dom';
+import {
+    Switch,
+    Route
+
+} from "react-router-dom";
+
+import '../dashboard/Dashboard.scss'
+// import { typography } from '@mui/system';
+import Notes from '../notes/Notes';
+import Archive from '../archive/Archive';
+import IsBin from '../bin/IsBin';
+import { useHistory } from 'react-router-dom';
 import SignOut from '../signOut/SignOut';
+import NoteServices from '../../services/NoteServices';
 
 const drawerWidth = 240;
 
@@ -98,9 +102,10 @@ const AppBar = styled(MuiAppBar, {
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
     ({ theme, open }) => ({
         width: drawerWidth,
-        flexShrink: 0,
+        flexShrink: 10,
         whiteSpace: 'nowrap',
         boxSizing: 'border-box',
+
         ...(open && {
             ...openedMixin(theme),
             '& .MuiDrawer-paper': openedMixin(theme),
@@ -113,14 +118,15 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 export default function MiniDrawer() {
+    const history = useHistory();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
 
-    // React.useEffect(() => {
-    //     if (!localStorage.getItem("token")) {
-    //         history.push('/signin')
-    //     }
-    // }, [])
+    React.useEffect(() => {
+        if (!localStorage.getItem("token")) {
+            history.push('/signin')
+        }
+    }, [])
 
     let list = [
         {
@@ -152,10 +158,28 @@ export default function MiniDrawer() {
     //     setOpen(false);
     //   };
 
+    const changeroutes = (text) => {
+        if (text.text == "Notes") {
+            history.push('/')
+        }
+        else if (text.text == "Archive") {
+            history.push('/archive')
+        }
+        else if (text.text == "Bin") {
+            history.push('/deleted')
+        }
+        else {
+            console.log("page not found");
+        }
+    }
+
+
     return (
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
+            
             <AppBar position="fixed" open={open}>
+            <div className='bar-app'>
                 <Toolbar>
                     <IconButton
                         color="inherit"
@@ -169,14 +193,17 @@ export default function MiniDrawer() {
                     >
                         <MenuIcon />
                     </IconButton>
+                    {/* <div className="mainHeader"> */}
                     <img className="keep" src="https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png" alt="keep logo"></img>
                     <Typography variant="h6" noWrap overflow="inherit" component="div">
                         Keep
                     </Typography>
                     <div className='header'>
                         <div className='search-bar'><IconButton> <SearchIcon /> </IconButton>
+                         {/* <SearchIcon /> */}
                             <input className='search' type="text" placeholder='Search' />
                         </div>
+                        
                         <div className='hearder-bar'>
                             <ul className="header-icon">
                                 <IconButton> <RefreshOutlinedIcon /> </IconButton>
@@ -190,9 +217,12 @@ export default function MiniDrawer() {
                             </ul>
                         </div>
                     </div>
-
+                    {/* </div> */}
                 </Toolbar>
+                </div>
             </AppBar>
+            
+            <div className='side-bar'>
             <Drawer variant="permanent" open={open}>
                 <DrawerHeader>
                     <IconButton >
@@ -202,7 +232,7 @@ export default function MiniDrawer() {
                 {/* <Divider /> */}
                 <List>
                     {list.map((text, index) => (
-                        <ListItem button key={text.text}>
+                        <ListItem button key={text.text} onClick={() => changeroutes(text)} >
                             <ListItemIcon>
 
                                 {text.icons}
@@ -213,14 +243,20 @@ export default function MiniDrawer() {
                     ))}
                 </List>
             </Drawer>
+            </div>
             <Box component="main" sx={{ flexGrow: 1, p: 2 }}>
                 <DrawerHeader />
                 <typography>
 
-                    <Notes />
+                    {/* <Notes /> */}
+
+                    <Switch>
+                        <Route exact path='/' component={Notes } />
+                        <Route exact path='/archive' component={Archive } />
+                        <Route exact path='/deleted' component={IsBin } />
+                    </Switch>
 
                 </typography>
-                {/* <DisplayNote /> */}
             </Box>
         </Box >
     );

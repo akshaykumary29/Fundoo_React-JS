@@ -1,3 +1,7 @@
+.Notes-container{
+    display: flex;
+    position: absolute;
+    flex-wrap: wrap;
 
 .mainDisplay{
     padding-top: 50px;
@@ -10,7 +14,7 @@
     background-color: #fff;
     border-color: #e0e0e0;
     border: 1px solid #dadce0;
-    border-radius: 8px;
+    border-radius: 15px;
     width: 250px;
     min-height: auto;
     // height: 130px;
@@ -36,11 +40,13 @@
     margin: 4px !important;
     word-wrap: break-word;
 }
-
+}
 .icons{
     padding-top: 10px;
     padding-bottom: 10px;
+    color: inherit;
 }
+
 
 .close-Icon{
     display: flex;
@@ -49,7 +55,7 @@
 
 @media screen and (max-width:900px) {
     .mainDisplay{
-        grid-template-columns: repeat(4,1fr);
+        grid-template-columns: repeat(3,1fr);
         width: 100%;
     }
     .displayBox{
@@ -75,7 +81,7 @@
         width: 100%;
     }
     .displayBox{
-        width: 68%;
+        width: 65%;
         margin: 15px auto;
     }
 }

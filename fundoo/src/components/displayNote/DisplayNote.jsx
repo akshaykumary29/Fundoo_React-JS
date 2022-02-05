@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Icons } from "../icons/Icons";
+import Icons from "../icons/Icons";
 import '../displayNote/DisplayNote.scss'
 
 import { styled } from '@mui/material/styles';
@@ -39,7 +39,6 @@ const BootstrapDialogTitle = (props) => {
                         color: (theme) => theme.palette.grey[500],
                     }}
                 >
-                    {/* <CloseIcon /> */}
                 </IconButton>
             ) : null}
         </DialogTitle>
@@ -47,7 +46,7 @@ const BootstrapDialogTitle = (props) => {
 };
 
 function DisplayNote(props) {
-    const [open, setopen] = useState(false)
+    const [open, setOpen] = useState(false);
 
     const [dialogbox, setDialogbox] = useState({
         title: "",
@@ -64,7 +63,9 @@ function DisplayNote(props) {
         colour: "#ffffff"
     })
 
-    const changeColor = () => {
+    const changeColor = (val) => {
+        // color noes .colorr
+        // setNotes(val)
         props.getnote()
     }
 
@@ -99,80 +100,78 @@ function DisplayNote(props) {
 
     const handleOpen = (data) => {
         setNotes(data)
-        setopen(true)
+        setOpen(true);
         setDialogbox({
             title: data.title,
             description: data.description,
-            // _id: item.id
+            // _id: data.id
         })
     }
 
     const handleClose = (id) => {
-        setopen(false)
+        setOpen(false);
         let data = {
             "_id": id,
             "title": dialogbox.title,
             "description": dialogbox.description
         }
         NoteServices.updateNotes(data)
-        .then((res) => {
-            props.getnote()
-        })
-        .catch((err) => {
-            
-        })
+            .then((res) => {
+                props.getnote()
+            })
+            .catch((err) => {
+
+            })
     }
 
     const changeField = (e, id) => {
         setDialogbox(previousvalues => {
-            return{ ...previousvalues, [e.target.name]: e.target.value, '_id': id}
+            return { ...previousvalues, [e.target.name]: e.target.value, '_id': id }
         })
     }
 
-    if (props.noteArr) {
-        return (
-            <>
-                {props.noteArr.map((notes, index) => {
-                    return <div className='mainDisplay' key={index}>
-                        <div className='displayBox' style={{ backgroundColor: notes.colour }}>
-                            <div onClick={() => handleOpen(notes)}>
-                                <div className='title1'>{notes.title}</div>
-                                <div className='title-desc'>{notes.description}</div>
-                            </div>
-                            <div className='icons'><Icons mode="display" notes={notes} changeColour1={ changeColor } changeArchive={() => changeArchive(notes._id)} isdeleteChange={() => isdeleteChange(notes._id)} getnote={()=>props.getnote()} /></div>
+    
+    return (
+        <div className="Notes-container">
+            {props.noteArr.map((notes, index) => {
+                return <div className='mainDisplay' key={index}>
+                    <div className='displayBox' style={{ backgroundColor: notes.colour }}>
+                        <div style={{ width: "90%" }} onClick={() => handleOpen(notes)}>
+                            <div className='title1'>{notes.title}</div>
+                            <div className='title-desc'>{notes.description}</div>
                         </div>
+                        <div className='icons'><Icons mode="display" notes={notes} changeColour1={changeColor} changeArchive={() => changeArchive(notes._id)} isdeleteChange={() => isdeleteChange(notes._id)} getnote={() => props.getnote()} /></div>
                     </div>
-                })
-                }
+                </div>
+            })
+            }
 
-                <BootstrapDialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
-                    <div style={{ width: "100%", overflow: "hidden" }}>
-                        <div style={{ backgroundColor: notes.colour }}>
+            <BootstrapDialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
+                <div style={{ backgroundColor: '#ffffff', width: "100%", overflow: "hidden" }}>
+                    <div style={{ backgroundColor: notes.colour }}>
 
-                            <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
+                        <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
 
-                                <input type="text" name="title" style={{ border: "none", outline: "none", backgroundColor: notes.colour }} value={notes.title} name="title" onChange={(e) => { changeField(e, notes._id) }} />
+                            <input name="title" style={{ border: "none", outline: "none", backgroundColor: notes.colour }} value={dialogbox.title} onChange={(e) => { changeField(e, notes._id) }} />
 
-                            </BootstrapDialogTitle>
-                            <DialogContent>
+                        </BootstrapDialogTitle>
+                        <DialogContent>
+                        
+                            <input  name="description" style={{ border: "none", outline: "none", backgroundColor: notes.colour }} value={dialogbox.description} onChange={(e) => { changeField(e, notes._id) }} />
 
-                                <input type="text" name="description" style={{ border: "none", outline: "none", backgroundColor: notes.colour }} value={notes.description} name="description" onChange={(e) => { changeField(e, notes._id) }} />
+                        </DialogContent>
+                        <DialogContent className="close-Icon">
+                        {/* changeColour1={() => changeColor(notes.colour)} */}
+                            <Icons mode="display" notes={notes} changeColour1={changeColor} changeArchive={() => changeArchive(notes._id)} isdeleteChange={() => isdeleteChange(notes._id)} getnote={() => props.getnote()} />
+                            
+                            <Button autoFocus onClick={() => handleClose(notes)} style={{ backgroundColor: notes.colour }} > Close </Button>
 
-                            </DialogContent>
-                            <DialogContent className="close-Icon">
-
-                                <Icons mode="update" notes={notes}
-                                    changeColour1={changeColor} changeArchive={changeArchive} isdeleteChange={() => isdeleteChange(notes._id)} />
-                                {/* updateNote={this.props.updateNote} */}
-                                <Button autoFocus onClick={() => handleClose(notes)}> Close </Button>
-
-                            </DialogContent>
-                        </div>
+                        </DialogContent>
                     </div>
-                </BootstrapDialog>
-            </>
-        )
-    }
+                </div>
+            </BootstrapDialog>
+        </div>
+    )
 }
 
 export default DisplayNote;
